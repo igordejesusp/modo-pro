@@ -70,6 +70,8 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--gold); ou
   display: flex; align-items: center; justify-content: center; padding-left: 30px;
   font: 400 19px var(--display); text-shadow: 1.5px 0px 0 #000, -1.5px 0px 0 #000, 0px 1.5px 0 #000, 0px -1.5px 0 #000, 1.12px 1.12px 0 #000, -1.12px 1.12px 0 #000, 1.12px -1.12px 0 #000, -1.12px -1.12px 0 #000, 0 2px 0 #000; }
 .pill svg, .pill img { position: absolute; left: -6px; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; }
+.pill svg { width: 40px; height: 34px; left: -7px; filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .45)); }
+.pill img { width: 44px; height: 44px; left: -9px; object-fit: contain; filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .45)); }
 
 /* abas */
 .tabs { display: flex; gap: 8px; overflow-x: auto; padding: 0 4px; scrollbar-width: none; }
@@ -401,10 +403,16 @@ a.go[aria-disabled="true"] { filter: grayscale(.8) brightness(.7); pointer-event
 </style>
 
 <div class="screen">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="cg-bf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9dcff"/><stop offset=".55" stop-color="#4c9dff"/><stop offset="1" stop-color="#2a6fe0"/></linearGradient>
+<linearGradient id="cg-bb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a6fe0"/><stop offset="1" stop-color="#1747a8"/></linearGradient>
+<linearGradient id="cg-rf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb3c0"/><stop offset=".55" stop-color="#ff4d6a"/><stop offset="1" stop-color="#d9264a"/></linearGradient>
+<linearGradient id="cg-rb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9264a"/><stop offset="1" stop-color="#9c1232"/></linearGradient>
+</defs><symbol id="crown-b" viewBox="0 0 100 84"><path d="M6 26 L14 18 L33 37 L46 7 L54 7 L67 37 L86 18 L94 26 L88 70 Q50 82 12 70 Z" fill="url(#cg-bf)"/><path d="M10.4 55 Q50 66 89.6 55 L88 70 Q50 82 12 70 Z" fill="url(#cg-bb)"/><path d="M14 18 L33 37 L24 52 L10 52 Z" fill="#fff" opacity=".22"/><path d="M54 7 L67 37 L58 50 Z" fill="#000" opacity=".12"/><path d="M6 26 L14 18 L33 37 L46 7 L54 7 L67 37 L86 18 L94 26 L88 70 Q50 82 12 70 Z" fill="none" stroke="#123a8a" stroke-width="3.6" stroke-linejoin="round"/></symbol><symbol id="crown-r" viewBox="0 0 100 84"><path d="M6 26 L14 18 L33 37 L46 7 L54 7 L67 37 L86 18 L94 26 L88 70 Q50 82 12 70 Z" fill="url(#cg-rf)"/><path d="M10.4 55 Q50 66 89.6 55 L88 70 Q50 82 12 70 Z" fill="url(#cg-rb)"/><path d="M14 18 L33 37 L24 52 L10 52 Z" fill="#fff" opacity=".22"/><path d="M54 7 L67 37 L58 50 Z" fill="#000" opacity=".12"/><path d="M6 26 L14 18 L33 37 L46 7 L54 7 L67 37 L86 18 L94 26 L88 70 Q50 82 12 70 Z" fill="none" stroke="#6b0d22" stroke-width="3.6" stroke-linejoin="round"/></symbol></svg>
   <div class="res">
-    <div class="pill" id="pLeague"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 31 L8 12 L15 19 L20 7 L25 19 L32 12 L34 31 Z" fill="#ffc93c" stroke="#24104d" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 15 L23.5 20 L20 25 L16.5 20 Z" fill="#5aa6ff" stroke="#24104d" stroke-width="1.5"/></svg>Liga 4</div>
-    <div class="pill" id="pW"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 30 L7 12 L14 19 L20 8 L26 19 L33 12 L35 30 Z" fill="#3b8fff" stroke="#24104d" stroke-width="2.5" stroke-linejoin="round"/></svg>–</div>
-    <div class="pill" id="pL"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 30 L7 12 L14 19 L20 8 L26 19 L33 12 L35 30 Z" fill="#ff3f5f" stroke="#24104d" stroke-width="2.5" stroke-linejoin="round"/></svg>–</div>
+    <div class="pill" id="pLeague"><img src="ui/league4.png" alt="Liga 4">Liga 4</div>
+    <div class="pill" id="pW"><svg viewBox="0 0 100 84" aria-label="Vitórias"><use href="#crown-b"/></svg>–</div>
+    <div class="pill" id="pL"><svg viewBox="0 0 100 84" aria-label="Derrotas"><use href="#crown-r"/></svg>–</div>
   </div>
 
   <div class="view" id="v-painel">
