@@ -208,7 +208,7 @@ details.deckbox[open] .chev { transform: rotate(180deg); }
 .bl-res { font: 400 21px var(--display); text-shadow: 2px 0px 0 var(--ink), -2px 0px 0 var(--ink), 0px 2px 0 var(--ink), 0px -2px 0 var(--ink), 1.5px 1.5px 0 var(--ink), -1.5px 1.5px 0 var(--ink), 1.5px -1.5px 0 var(--ink), -1.5px -1.5px 0 var(--ink), 0 2px 0 var(--ink); }
 .bl-arch { font: 400 19px/1.05 var(--display); color: #fff; text-align: center; text-wrap: balance; text-shadow: 1.5px 0px 0 var(--ink), -1.5px 0px 0 var(--ink), 0px 1.5px 0 var(--ink), 0px -1.5px 0 var(--ink), 1.12px 1.12px 0 var(--ink), -1.12px 1.12px 0 var(--ink), 1.12px -1.12px 0 var(--ink), -1.12px -1.12px 0 var(--ink); }
 .bl-cr { justify-self: end; display: flex; align-items: center; gap: 4px; font: 400 22px var(--display); text-shadow: 2px 0px 0 var(--ink), -2px 0px 0 var(--ink), 0px 2px 0 var(--ink), 0px -2px 0 var(--ink), 1.5px 1.5px 0 var(--ink), -1.5px 1.5px 0 var(--ink), 1.5px -1.5px 0 var(--ink), -1.5px -1.5px 0 var(--ink); }
-.bl-cr svg { width: 24px; height: 20px; }
+.bl-cr svg { width: 26px; height: 22px; filter: drop-shadow(0 1.5px 0 rgba(0, 0, 0, .45)); }
 .bl-cards { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 4px; padding: 10px 10px 4px; }
 .bl-cards img { width: 100%; display: block; aspect-ratio: 102 / 150; object-fit: contain; }
 .bl-cards .nf { aspect-ratio: 102 / 150; border-radius: 6px; background: var(--inset); display: grid; place-items: center; text-align: center; font: 800 9px var(--body); color: var(--muted); padding: 2px; overflow-wrap: anywhere; }
@@ -592,7 +592,8 @@ const PLANS = {
 
 // carta que representa cada arquétipo
 const ICON = {cerco:"x-bow", aereo:"lava-hound", gcem:"giant", egiant:"electro-giant", ggob:"goblin-giant", golem:"golem", rg:"royal-giant", tanque:"goblinstein", servo:"minion-giant", corredor:"hog-rider", mk:"mega-knight", porcos:"royal-hogs", ponte:"battle-ram", bait:"goblin-barrel", cemiterio:"graveyard", subterraneo:"miner", sparky:"sparky", outros:"mirror"};
-const CROWN = c => `<svg viewBox="0 0 24 20" aria-hidden="true"><path d="M2 17 L3.5 5 L8.5 10 L12 2 L15.5 10 L20.5 5 L22 17 Z" fill="${c}" stroke="#24104d" stroke-width="2" stroke-linejoin="round"/></svg>`;
+// coroa no mesmo desenho da barra do topo (símbolos crown-b e crown-r)
+const CROWN = c => `<svg viewBox="0 0 100 84" aria-hidden="true"><use href="#crown-${c}"/></svg>`;
 const S = { all: [], deck: "splashyard", per: "all", feedN: 3, loaded: false };
 try { const p = JSON.parse(localStorage.getItem("liga4-filtros") || "{}"); if (p.deck) S.deck = p.deck; if (p.per) S.per = p.per; } catch (e) {}
 
@@ -708,7 +709,7 @@ function renderFeed(b) {
       <div class="bl-head">
         <span class="bl-res">${resWord(x.res)}</span>
         <span class="bl-arch">${esc(a.name)}</span>
-        <span class="bl-cr">${x.cr[0]}${CROWN("#5aa6ff")}<span style="opacity:.8">–</span>${CROWN("#ff5c79")}${x.cr[1]}</span>
+        <span class="bl-cr">${x.cr[0]}${CROWN("b")}<span style="opacity:.8">–</span>${CROWN("r")}${x.cr[1]}</span>
       </div>
       <div class="bl-cards">${cards}</div>
       <div class="bl-foot"><span>${ago(x.ts)}</span><span></span></div>
