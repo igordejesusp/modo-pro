@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6a3fd6"/><stop offset="1" stop-color="#2c1468"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe58a"/><stop offset=".55" stop-color="#ffc93c"/><stop offset="1" stop-color="#d08a00"/></linearGradient>
+    <pattern id="dia" width="160" height="160" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="160" height="160" fill="none"/><rect x="6" y="6" width="148" height="148" rx="18" fill="#ffffff" opacity=".06"/></pattern>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <rect width="1024" height="1024" fill="url(#dia)"/>
+  <g transform="translate(512 430)">
+    <path d="M-300 170 L-340 -150 L-150 0 L0 -250 L150 0 L340 -150 L300 170 Z" fill="url(#gold)" stroke="#24104d" stroke-width="34" stroke-linejoin="round"/>
+    <rect x="-300" y="150" width="600" height="80" rx="22" fill="url(#gold)" stroke="#24104d" stroke-width="30"/>
+    <path d="M0 -40 L58 40 L0 120 L-58 40 Z" fill="#5aa6ff" stroke="#24104d" stroke-width="22" stroke-linejoin="round"/>
+  </g>
+  <text x="512" y="900" text-anchor="middle" font-family="Arial Rounded MT Bold, Arial Black, Helvetica" font-weight="900" font-size="230" fill="#ffffff" stroke="#24104d" stroke-width="34" paint-order="stroke" letter-spacing="10">PRO</text>
+</svg>
