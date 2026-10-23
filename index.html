@@ -110,7 +110,8 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--gold); ou
 .ava { width: 64px; height: 64px; border-radius: 50%; padding: 3px; background: linear-gradient(180deg, #ffe07a, var(--gold) 55%, var(--gold-dk)); box-shadow: 0 0 0 3px var(--ink); }
 .ava img { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 50%; box-shadow: 0 0 0 2px var(--ink); }
 .idtxt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.lg { font: 400 15px var(--display); padding: 6px 12px; border-radius: 10px; background: linear-gradient(180deg, #9a6bff, #6a3fd6); box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .25), 0 0 0 2px var(--ink); text-shadow: 1.5px 0 0 var(--ink), -1.5px 0 0 var(--ink), 0 1.5px 0 var(--ink), 0 -1.5px 0 var(--ink); white-space: nowrap; }
+.lgicon { width: 72px; height: 72px; object-fit: contain; filter: drop-shadow(0 3px 0 var(--ink)); }
+.idtxt .clan { font: 800 13px var(--body); color: var(--muted); }
 .mini { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; padding: 12px 12px 0; }
 .mi { background: var(--inset); border-radius: 12px; box-shadow: inset 0 0 0 2px #4d2f93; padding: 6px 4px 8px; text-align: center; min-width: 0; }
 .mi .k { display: block; font: 800 10.5px/1.15 var(--body); color: var(--muted); }
@@ -426,8 +427,8 @@ a.go[aria-disabled="true"] { filter: grayscale(.8) brightness(.7); pointer-event
     <div id="pBody">
       <div class="idcard">
         <div class="ava"><img src="ui/avatar-hd.png" alt=""></div>
-        <div class="idtxt"><h1>Z.I.T.O.</h1><span class="tag">#G0P09GU · BR perseverance</span></div>
-        <span class="lg">Liga 4</span>
+        <div class="idtxt"><h1>Z.I.T.O.</h1><span class="tag">#G0P09GU</span><span class="clan">BR perseverance</span></div>
+        <img class="lgicon" src="ui/league4.png" alt="Liga 4" title="Liga 4">
       </div>
       <div class="mini" id="mini"></div>
       <div class="lastg" id="lastg"></div>
