@@ -91,7 +91,7 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--gold); ou
   display: flex; align-items: center; gap: 10px;
  }
 .band .avatar { width: 56px; height: 56px; flex: none; border-radius: 14px; background: var(--lav-dk); box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .18), 0 0 0 3px #8f74d1; padding: 4px; }
-.band .avatar img { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 10px; }
+.band .avatar img { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 50%; }
 .ribbon {
   flex: 1; min-width: 0; height: 52px; display: flex; align-items: center; padding: 0 22px 0 14px;
   background: var(--lav-dk); clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
@@ -421,7 +421,7 @@ a.go[aria-disabled="true"] { filter: grayscale(.8) brightness(.7); pointer-event
   </div>
 
   <div class="band">
-    <div class="avatar"><img src="ui/avatar-gy.png" alt=""></div>
+    <div class="avatar"><img src="ui/avatar-barb.png" alt=""></div>
     <div class="ribbon"><span class="t">Modo Pro</span></div>
     <div class="per" role="group" aria-label="Período">
       <button id="fp-day" data-per="day" aria-pressed="false">Hoje</button>
@@ -434,7 +434,7 @@ a.go[aria-disabled="true"] { filter: grayscale(.8) brightness(.7); pointer-event
     <button class="pbar" id="pToggle" type="button" aria-expanded="true" aria-controls="pBody"><span class="t">Perfil</span><span class="live" id="live"><i></i><span id="liveTxt">Conectando…</span></span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9 L12 16 L19 9" fill="none" stroke="#24104d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9 L12 16 L19 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <div id="pBody">
       <div class="idcard">
-        <div class="ava"><img src="ui/avatar-gy.png" alt=""></div>
+        <div class="ava"><img src="ui/avatar-barb.png" alt=""></div>
         <div class="idtxt"><h1>Z.I.T.O.</h1><span class="tag">#G0P09GU</span><span class="clan">BR perseverance</span></div>
         <img class="lgicon" src="ui/league4.png" alt="Liga 4" title="Liga 4">
       </div>
@@ -500,7 +500,7 @@ a.go[aria-disabled="true"] { filter: grayscale(.8) brightness(.7); pointer-event
 
   <div class="view" id="v-live" hidden>
     <div class="band">
-      <div class="avatar"><img src="ui/avatar-gy.png" alt=""></div>
+      <div class="avatar"><img src="ui/avatar-barb.png" alt=""></div>
       <div class="ribbon"><span class="t">Live</span></div>
     </div>
 
