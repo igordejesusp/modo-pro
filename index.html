@@ -72,7 +72,9 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--gold); ou
 .pill svg, .pill img { position: absolute; left: -6px; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; }
 
 /* abas */
-.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-inline: 8%; }
+.tabs { display: flex; gap: 8px; overflow-x: auto; padding: 0 4px; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs .tab { flex: 1 0 auto; min-width: 46%; padding: 0 16px; white-space: nowrap; }
 .tab {
   height: 52px; border: 0; border-radius: 16px 16px 0 0; cursor: pointer; background: var(--tab-off);
   box-shadow: inset 0 0 0 3px rgba(0, 0, 0, .18);
@@ -87,7 +89,7 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--gold); ou
   display: flex; align-items: center; gap: 10px;
  }
 .band .avatar { width: 56px; height: 56px; flex: none; border-radius: 14px; background: var(--lav-dk); box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .18), 0 0 0 3px #8f74d1; padding: 4px; }
-.band .avatar img { width: 100%; height: 100%; display: block; object-fit: cover; clip-path: circle(46% at 50% 47%); }
+.band .avatar img { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 10px; }
 .ribbon {
   flex: 1; min-width: 0; height: 52px; display: flex; align-items: center; padding: 0 22px 0 14px;
   background: var(--lav-dk); clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
@@ -106,7 +108,7 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--gold); ou
 
 .idcard { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 14px 14px 0; }
 .ava { width: 64px; height: 64px; border-radius: 50%; padding: 3px; background: linear-gradient(180deg, #ffe07a, var(--gold) 55%, var(--gold-dk)); box-shadow: 0 0 0 3px var(--ink); }
-.ava img { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 50%; clip-path: circle(46% at 50% 47%); transform: scale(1.18); }
+.ava img { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 50%; box-shadow: 0 0 0 2px var(--ink); }
 .idtxt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .lg { font: 400 15px var(--display); padding: 6px 12px; border-radius: 10px; background: linear-gradient(180deg, #9a6bff, #6a3fd6); box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .25), 0 0 0 2px var(--ink); text-shadow: 1.5px 0 0 var(--ink), -1.5px 0 0 var(--ink), 0 1.5px 0 var(--ink), 0 -1.5px 0 var(--ink); white-space: nowrap; }
 .mini { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; padding: 12px 12px 0; }
@@ -281,6 +283,36 @@ details.secbox[open] > summary .chev { transform: rotate(180deg); }
 .fr .pc { font: 400 15px var(--display); text-align: right; text-shadow: 1px 0 0 var(--ink), -1px 0 0 var(--ink), 0 1px 0 var(--ink), 0 -1px 0 var(--ink); }
 @media (max-width: 440px) { .kpi img, .kpi .nf { width: 40px; } .kpi .nm { font-size: 13px; } .dot { width: 28px; } }
 
+/* cartas que mais te derrotam */
+.fr .track.loss b { background: linear-gradient(180deg, #ff9aac, var(--loss)); }
+.fr .pc.red { color: #ff8197; }
+.fr .lane small { font: 800 11px var(--body); color: var(--muted); }
+
+/* elixir desperdiçado */
+.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.trio .mi .v { font-size: 24px; }
+.lk { position: relative; height: 96px; display: flex; align-items: flex-end; gap: 4px; padding: 0 2px; border-bottom: 2px solid rgba(255, 255, 255, .25); }
+.lk b { flex: 1; min-width: 0; border-radius: 4px 4px 0 0; }
+.lk b.W { background: linear-gradient(180deg, #8fc6ff, var(--win)); }
+.lk b.L { background: linear-gradient(180deg, #ff9aac, var(--loss)); }
+.lk .lim { position: absolute; left: 0; right: 0; border-top: 2px dashed var(--gold); }
+.lk .lim span { position: absolute; right: 0; top: -17px; font: 800 10.5px var(--body); color: var(--gold); }
+.lk-x { display: flex; justify-content: space-between; font: 800 10.5px var(--body); color: var(--muted); }
+.legend { display: flex; gap: 12px; font: 800 11.5px var(--body); color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; vertical-align: -1px; }
+.callout { border-radius: 12px; padding: 9px 12px; font: 800 13px var(--body); background: rgba(0, 0, 0, .25); box-shadow: inset 3px 0 0 var(--gold); }
+.callout b { color: var(--gold); }
+
+/* sessões e tilt */
+.vs2 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.hours { display: flex; flex-direction: column; gap: 6px; }
+.sess { display: flex; flex-direction: column; gap: 6px; }
+.se { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; align-items: center; background: var(--inset); border-radius: 10px; padding: 7px 10px; }
+.se .when { font: 800 12px var(--body); color: var(--muted); }
+.se .sc { font: 400 17px var(--display); text-shadow: 1px 0 0 var(--ink), -1px 0 0 var(--ink), 0 1px 0 var(--ink), 0 -1px 0 var(--ink); }
+.se .trail { grid-column: 1 / -1; flex-wrap: wrap; }
+.se .trail span { width: 16px; height: 19px; font-size: 10px; padding-bottom: 4px; }
+
 /* análise */
 details.deep { background: var(--inset-2); border-radius: 16px; box-shadow: 0 0 0 3px #26124f, inset 0 0 0 2px #4d2f93; }
 details.deep > summary { cursor: pointer; padding: 12px 14px; font: 400 21px var(--display); color: var(--gold); text-shadow: 1.5px 0px 0 var(--ink), -1.5px 0px 0 var(--ink), 0px 1.5px 0 var(--ink), 0px -1.5px 0 var(--ink), 1.12px 1.12px 0 var(--ink), -1.12px 1.12px 0 var(--ink), 1.12px -1.12px 0 var(--ink), -1.12px -1.12px 0 var(--ink); }
@@ -375,13 +407,12 @@ a.go[aria-disabled="true"] { filter: grayscale(.8) brightness(.7); pointer-event
   </div>
 
   <div class="view" id="v-painel">
-  <div class="tabs" role="group" aria-label="Deck">
-    <button class="tab" id="fd-sy" data-deck="splashyard" aria-pressed="true">Splashyard</button>
-    <button class="tab" id="fd-all" data-deck="all" aria-pressed="false">Todos</button>
+  <div class="tabs" id="deckTabs" role="group" aria-label="Deck">
+
   </div>
 
   <div class="band">
-    <div class="avatar"><img src="ui/avatar.png" alt=""></div>
+    <div class="avatar"><img src="ui/avatar-hd.png" alt=""></div>
     <div class="ribbon"><span class="t">Modo Pro</span></div>
     <div class="per" role="group" aria-label="Período">
       <button id="fp-day" data-per="day" aria-pressed="false">Hoje</button>
@@ -394,7 +425,7 @@ a.go[aria-disabled="true"] { filter: grayscale(.8) brightness(.7); pointer-event
     <button class="pbar" id="pToggle" type="button" aria-expanded="true" aria-controls="pBody"><span class="t">Perfil</span><span class="live" id="live"><i></i><span id="liveTxt">Conectando…</span></span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9 L12 16 L19 9" fill="none" stroke="#24104d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9 L12 16 L19 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <div id="pBody">
       <div class="idcard">
-        <div class="ava"><img src="ui/avatar.png" alt=""></div>
+        <div class="ava"><img src="ui/avatar-hd.png" alt=""></div>
         <div class="idtxt"><h1>Z.I.T.O.</h1><span class="tag">#G0P09GU · BR perseverance</span></div>
         <span class="lg">Liga 4</span>
       </div>
@@ -411,8 +442,8 @@ a.go[aria-disabled="true"] { filter: grayscale(.8) brightness(.7); pointer-event
   </section>
 
   <details class="deckbox" id="deckbox" open>
-  <summary><span class="t">Deck</span><span class="dk-sub">Splashyard · <i></i>3.5</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9 L12 16 L19 9" fill="none" stroke="#24104d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9 L12 16 L19 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
-  <div class="deck" aria-label="Deck de batalha">
+  <summary><span class="t">Deck</span><span class="dk-sub" id="deckSub">Splashyard · <i></i>3.5</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9 L12 16 L19 9" fill="none" stroke="#24104d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9 L12 16 L19 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+  <div class="deck" id="deckGrid" aria-label="Deck de batalha">
     <div class="gc evo"><span class="drop"><span>4</span></span><img src="hd/baby-dragon__evo.png" alt="Bebê Dragão evoluído"><span class="lv">Nível 16</span><div class="mx">Máx.</div></div>
     <div class="gc hero"><span class="drop"><span>4</span></span><img src="hd/valkyrie__hero.png" alt="Valquíria heroína"><span class="lv">Nível 16</span><div class="mx">Máx.</div></div>
     <div class="gc hero"><span class="drop"><span>3</span></span><img src="hd/ice-wizard__hero.png" alt="Mago de Gelo herói"><span class="lv">Nível 16</span><div class="mx">Máx.</div></div>
@@ -422,7 +453,7 @@ a.go[aria-disabled="true"] { filter: grayscale(.8) brightness(.7); pointer-event
     <div class="gc"><span class="drop"><span>4</span></span><img src="hd/poison.png" alt="Veneno"><span class="lv">Nível 16</span><div class="mx">Máx.</div></div>
     <div class="gc"><span class="drop"><span>3</span></span><img src="hd/tombstone.png" alt="Lápide"><span class="lv">Nível 16</span><div class="mx">Máx.</div></div>
   </div>
-  <div class="deckfoot"><span class="elx"><i></i><span class="t">3.5</span></span><span class="deckname">Splashyard</span></div>
+  <div class="deckfoot" id="deckFoot"><span class="elx"><i></i><span class="t">3.5</span></span><span class="deckname" id="deckName2">Splashyard</span></div>
   </details>
   <div class="sep"></div>
 
@@ -443,6 +474,14 @@ a.go[aria-disabled="true"] { filter: grayscale(.8) brightness(.7); pointer-event
     </div>
   </details>
 
+  <details class="secbox" id="sb-desempenho" open>
+    <summary class="sech"><h2>Desempenho</h2><span>elixir e cabeça<br>nas suas sessões</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9 L12 16 L19 9" fill="none" stroke="#24104d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9 L12 16 L19 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+    <div class="secbody">
+      <div class="panel" id="pElixir"></div>
+      <div class="panel" id="pSessao"></div>
+    </div>
+  </details>
+
   <details class="deep" id="deep">
     <summary>Análise completa</summary>
     <div class="deep-body" id="deepBody"></div>
@@ -452,7 +491,7 @@ a.go[aria-disabled="true"] { filter: grayscale(.8) brightness(.7); pointer-event
 
   <div class="view" id="v-live" hidden>
     <div class="band">
-      <div class="avatar"><img src="ui/avatar.png" alt=""></div>
+      <div class="avatar"><img src="ui/avatar-hd.png" alt=""></div>
       <div class="ribbon"><span class="t">Live</span></div>
     </div>
 
@@ -499,6 +538,7 @@ const ARCH = [
   {id:"golem", name:"Golem", any:["golem","elixir-golem"]},
   {id:"rg", name:"Gigante Real", any:["royal-giant"]},
   {id:"tanque", name:"Goblinstein / Rúnico", any:["goblinstein","rune-giant"]},
+  {id:"servo", name:"Servo Gigante", any:["minion-giant"]},
   {id:"corredor", name:"Corredor", any:["hog-rider"]},
   {id:"mk", name:"Megacavaleiro", any:["mega-knight"]},
   {id:"porcos", name:"Porcos / Recrutas", any:["royal-hogs","royal-recruits"]},
@@ -536,12 +576,13 @@ const PLANS = {
   cemiterio: {b:["Valquíria no Cemitério dele e Veneno guardado."], gy:"Quando o feitiço dele sair do ciclo."},
   subterraneo: {b:["Guarde Valquíria ou Barril perto da torre para o Mineiro ou a Broca."], gy:"Lane oposta, forçando ele a defender."},
   sparky: {b:["Lápide e esqueletos seguram os tiros. Tornado tira o Sparky da linha."], gy:"Lane oposta."},
+  servo: {b:["Mago de Gelo e Bebê Dragão seguram o Servo Gigante; Tornado puxa ele para o Rei.","Guarde o Veneno para o apoio que vem atrás."], gy:"Lane oposta quando ele investir no Servo Gigante."},
   outros: {b:["Leia a condição de vitória dele no primeiro minuto e guarde a resposta."], gy:"Depois de uma defesa com vantagem."}
 };
 
 
 // carta que representa cada arquétipo
-const ICON = {cerco:"x-bow", aereo:"lava-hound", gcem:"giant", egiant:"electro-giant", ggob:"goblin-giant", golem:"golem", rg:"royal-giant", tanque:"goblinstein", corredor:"hog-rider", mk:"mega-knight", porcos:"royal-hogs", ponte:"battle-ram", bait:"goblin-barrel", cemiterio:"graveyard", subterraneo:"miner", sparky:"sparky", outros:"mirror"};
+const ICON = {cerco:"x-bow", aereo:"lava-hound", gcem:"giant", egiant:"electro-giant", ggob:"goblin-giant", golem:"golem", rg:"royal-giant", tanque:"goblinstein", servo:"minion-giant", corredor:"hog-rider", mk:"mega-knight", porcos:"royal-hogs", ponte:"battle-ram", bait:"goblin-barrel", cemiterio:"graveyard", subterraneo:"miner", sparky:"sparky", outros:"mirror"};
 const CROWN = c => `<svg viewBox="0 0 24 20" aria-hidden="true"><path d="M2 17 L3.5 5 L8.5 10 L12 2 L15.5 10 L20.5 5 L22 17 Z" fill="${c}" stroke="#24104d" stroke-width="2" stroke-linejoin="round"/></svg>`;
 const S = { all: [], deck: "splashyard", per: "all", feedN: 3, loaded: false };
 try { const p = JSON.parse(localStorage.getItem("liga4-filtros") || "{}"); if (p.deck) S.deck = p.deck; if (p.per) S.per = p.per; } catch (e) {}
@@ -558,13 +599,38 @@ function ago(ts) {
 function startOfDay() { const d = new Date(); d.setHours(0, 0, 0, 0); return d.getTime() / 1000; }
 function filtered() {
   let b = S.all;
-  if (S.deck !== "all") b = b.filter(x => x.deck === S.deck);
+  b = b.filter(x => deckKey(x) === S.deck);
   if (S.per === "day") b = b.filter(x => x.ts >= startOfDay());
   if (S.per === "week") b = b.filter(x => x.ts >= Date.now() / 1000 - 7 * 86400);
   return b;
 }
 function rec(list) { const w = list.filter(x => x.res === "W").length, l = list.filter(x => x.res === "L").length; return {w, l, n: w + l, pct: w + l ? w / (w + l) : 0}; }
-const deckLabel = d => d === "splashyard" ? "Splashyard" : d === "egolem" ? "Golem de Elixir" : "outro deck";
+// cada deck que você joga vira uma aba; o Splashyard vem primeiro
+function deckKey(x) {
+  if (x.deck === "splashyard") return "splashyard";
+  if (x.me && x.me.length) {
+    if (x.me.includes("elixir-golem")) return "egolem";
+    if (x.me.includes("minion-giant")) return "servo";
+    return "a-" + archOf(x.me).id;
+  }
+  return x.deck || "outro";
+}
+function deckName(k) {
+  if (k === "splashyard") return "Splashyard";
+  if (k === "egolem") return "Golem de Elixir";
+  if (k === "servo") return "Servo Gigante";
+  if (k.startsWith("a-")) { const a = ARCH.find(z => z.id === k.slice(2)); return a && a.id !== "outros" ? a.name : "Outro deck"; }
+  return "Outro deck";
+}
+function renderDeckTabs() {
+  const cnt = {};
+  S.all.forEach(x => { const k = deckKey(x); cnt[k] = (cnt[k] || 0) + 1; });
+  const keys = Object.keys(cnt).sort((p, q) => (q === "splashyard") - (p === "splashyard") || cnt[q] - cnt[p]);
+  if (!keys.includes("splashyard")) keys.unshift("splashyard");
+  if (!keys.includes(S.deck)) S.deck = "splashyard";
+  $("deckTabs").innerHTML = keys.map(k => `<button class="tab" type="button" data-deck="${k}" aria-pressed="${k === S.deck}">${esc(deckName(k))}</button>`).join("");
+}
+$("deckTabs").addEventListener("click", e => { const b = e.target.closest("[data-deck]"); if (!b) return; S.deck = b.dataset.deck; S.feedN = 3; saveFilters(); render(); });
 const letter = r => r === "W" ? "V" : r === "L" ? "D" : "E";
 const resWord = r => r === "W" ? "Vitória" : r === "L" ? "Derrota" : "Empate";
 
@@ -585,7 +651,7 @@ function renderScore(b) {
   const per = {day: "Hoje", week: "Últimos 7 dias", all: "Todo o histórico"}[S.per];
   const last10 = b.slice(0, 10).reverse();
   // sequência atual: deck filtrado, sem filtro de período
-  const streakList = S.deck === "all" ? S.all : S.all.filter(x => x.deck === S.deck);
+  const streakList = S.all.filter(x => deckKey(x) === S.deck);
   let k = 0; const first = streakList[0]?.res;
   while (k < streakList.length && streakList[k].res === first) k++;
   let alert = "";
@@ -599,13 +665,13 @@ function renderScore(b) {
       <div class="box"><span class="lbl">Aproveit.</span><span class="val">${r.n ? Math.round(r.pct * 100) + "%" : "–"}</span></div>
     </div>
     <div class="trailrow">
-      <span class="ctx">${per} · ${S.deck === "all" ? "todos os decks" : "Splashyard"}</span>
+      <span class="ctx">${per} · ${esc(deckName(S.deck))}</span>
       <div class="trail" aria-label="Últimos resultados, mais recente à direita">${last10.map(x => `<span class="${x.res}">${letter(x.res)}</span>`).join("")}</div>
     </div>${alert}`;
 }
 
 function renderCard() {
-  const all = S.deck === "all" ? S.all : S.all.filter(x => x.deck === S.deck);
+  const all = S.all.filter(x => deckKey(x) === S.deck);
   let cur = 0; const first = all[0]?.res;
   while (cur < all.length && all[cur].res === first) cur++;
   let best = 0, run = 0;
@@ -636,15 +702,99 @@ function renderFeed(b) {
         <span class="bl-cr">${x.cr[0]}${CROWN("#5aa6ff")}<span style="opacity:.8">–</span>${CROWN("#ff5c79")}${x.cr[1]}</span>
       </div>
       <div class="bl-cards">${cards}</div>
-      <div class="bl-foot"><span>${ago(x.ts)}</span><span>${S.deck === "all" ? deckLabel(x.deck) : ""}</span></div>
+      <div class="bl-foot"><span>${ago(x.ts)}</span><span></span></div>
     </div>`;
  }).join("");
   $("moreBtn").hidden = b.length <= S.feedN;
   $("lessBtn").hidden = S.feedN <= 3;
 }
 
+// ---------- 1. cartas que mais te derrotam ----------
+function cardsThatBeatYou(b) {
+  const by = {};
+  b.forEach(x => new Set(x.opp).forEach(c => { (by[c] ||= []).push(x); }));
+  return Object.entries(by).map(([c, list]) => ({c, r: rec(list)}))
+    .filter(o => o.r.n >= 2)
+    .sort((p, q) => (p.r.pct - q.r.pct) || (q.r.n - p.r.n))
+    .slice(0, 6);
+}
+
+// ---------- 2. elixir desperdiçado ----------
+const LEAK_LIMIT = 3;
+function renderElixir(b) {
+  const g = b.filter(x => x.leaked && typeof x.leaked[0] === "number");
+  if (!g.length) {
+    $("pElixir").innerHTML = `<h3>Elixir desperdiçado</h3><p class="hint">O jogo começou a mandar esse dado nas partidas de 21/10 em diante. Ele aparece aqui conforme você joga.</p>`;
+    return;
+  }
+  const avg = l => l.length ? l.reduce((t, v) => t + v, 0) / l.length : null;
+  const f = v => v == null ? "–" : v.toFixed(1);
+  const w = avg(g.filter(x => x.res === "W").map(x => x.leaked[0]));
+  const l = avg(g.filter(x => x.res === "L").map(x => x.leaked[0]));
+  const op = avg(g.map(x => x.leaked[1]).filter(v => typeof v === "number"));
+  const high = g.filter(x => x.leaked[0] > LEAK_LIMIT), highR = rec(high);
+  const last = g.slice(0, 16).reverse();
+  const max = Math.max(LEAK_LIMIT * 1.6, ...last.map(x => x.leaked[0]));
+  $("pElixir").innerHTML = `
+    <h3>Elixir desperdiçado</h3>
+    <p class="hint">Elixir que encheu e você não jogou. Pro mira em menos de ${LEAK_LIMIT} por partida.</p>
+    <div class="trio">
+      <div class="mi"><span class="k">Nas vitórias</span><span class="v" style="color:#7fbcff">${f(w)}</span></div>
+      <div class="mi"><span class="k">Nas derrotas</span><span class="v" style="color:#ff8197">${f(l)}</span></div>
+      <div class="mi"><span class="k">Do adversário</span><span class="v">${f(op)}</span></div>
+    </div>
+    <div class="lk" role="img" aria-label="Elixir desperdiçado nas últimas ${last.length} partidas">
+      <div class="lim" style="bottom:${LEAK_LIMIT / max * 100}%"><span>limite ${LEAK_LIMIT}</span></div>
+      ${last.map(x => `<b class="${x.res}" style="height:${Math.max(3, x.leaked[0] / max * 100)}%" title="${resWord(x.res)} · ${x.leaked[0].toFixed(1)} de elixir"></b>`).join("")}
+    </div>
+    <div class="lk-x"><span>mais antiga</span><span>últimas ${last.length} partidas</span><span>mais recente</span></div>
+    <div class="legend"><span><i style="background:var(--win)"></i>Vitória</span><span><i style="background:var(--loss)"></i>Derrota</span></div>
+    ${high.length ? `<div class="callout">Quando você passa de <b>${LEAK_LIMIT}</b> de elixir, o seu placar é <b>${highR.w}–${highR.l}</b> (${high.length} ${high.length === 1 ? "partida" : "partidas"}).</div>` : `<div class="callout">Nenhuma partida acima de <b>${LEAK_LIMIT}</b> de elixir neste filtro. Mandou bem.</div>`}`;
+}
+
+// ---------- 3. sessões e tilt ----------
+const SESSION_GAP = 30 * 60;
+function renderSessao() {
+  const all = S.all.filter(x => deckKey(x) === S.deck).slice().sort((p, q) => p.ts - q.ts);
+  if (all.length < 3) { $("pSessao").innerHTML = `<h3>Sessões e tilt</h3><p class="hint">Jogue mais algumas partidas com este deck para aparecer.</p>`; return; }
+  // próxima partida depois de 2 derrotas seguidas, e depois de uma vitória
+  const after2L = [], afterW = [];
+  for (let i = 1; i < all.length; i++) {
+    if (all[i].ts - all[i - 1].ts > SESSION_GAP) continue;
+    if (all[i - 1].res === "W") afterW.push(all[i]);
+    if (i >= 2 && all[i - 1].res === "L" && all[i - 2].res === "L" && all[i - 1].ts - all[i - 2].ts <= SESSION_GAP) after2L.push(all[i]);
+  }
+  const gen = rec(all), a2 = rec(after2L), aw = rec(afterW);
+  const pc = r => r.n ? Math.round(r.pct * 100) + "%" : "–";
+  // horários
+  const slots = [["Madrugada", 0, 6], ["Manhã", 6, 12], ["Tarde", 12, 18], ["Noite", 18, 24]].map(([n, a, z]) => ({n, r: rec(all.filter(x => { const h = new Date(x.ts * 1000).getHours(); return h >= a && h < z; }))})).filter(o => o.r.n);
+  // sessões
+  const ses = [];
+  all.forEach(x => { const s0 = ses[ses.length - 1]; if (s0 && x.ts - s0[s0.length - 1].ts <= SESSION_GAP) s0.push(x); else ses.push([x]); });
+  const lastSes = ses.slice(-5).reverse();
+  const tiltMsg = a2.n >= 3
+    ? (a2.pct < gen.pct
+      ? `Depois de 2 derrotas seguidas você ganha <b>${pc(a2)}</b> da próxima, contra <b>${pc(gen)}</b> no geral. A pausa vale a pena.`
+      : `Depois de 2 derrotas seguidas você ainda ganha <b>${pc(a2)}</b> da próxima (geral: ${pc(gen)}). Você segura bem a pressão.`)
+    : `Ainda são poucos casos de 2 derrotas seguidas para tirar conclusão (${a2.n}).`;
+  $("pSessao").innerHTML = `
+    <h3>Sessões e tilt</h3>
+    <div class="vs2">
+      <div class="mi"><span class="k">No geral</span><span class="v">${pc(gen)}</span></div>
+      <div class="mi"><span class="k">Depois de vitória</span><span class="v" style="color:#7fbcff">${pc(aw)}</span></div>
+      <div class="mi"><span class="k">Depois de 2 derrotas</span><span class="v" style="color:#ff8197">${pc(a2)}</span></div>
+    </div>
+    <div class="callout">${tiltMsg}</div>
+    <h3 style="font-size:16px">Seu horário</h3>
+    <div class="hours">${slots.map(o => `<div class="fr" style="grid-template-columns:86px minmax(0,1fr) 44px"><span style="font:800 12px var(--body)">${o.n}</span><div class="lane"><small>${o.r.w}–${o.r.l}</small><div class="track"><b style="width:${(o.r.pct * 100).toFixed(1)}%"></b></div></div><span class="pc">${pc(o.r)}</span></div>`).join("")}</div>
+    <h3 style="font-size:16px">Últimas sessões</h3>
+    <div class="sess">${lastSes.map(se => { const r = rec(se), d0 = new Date(se[0].ts * 1000), d1 = new Date(se[se.length - 1].ts * 1000);
+      const hm = d => d.toLocaleTimeString("pt-BR", {hour: "2-digit", minute: "2-digit"});
+      return `<div class="se"><span class="when">${d0.toLocaleDateString("pt-BR", {weekday: "short", day: "2-digit", month: "2-digit"})} · ${hm(d0)}–${hm(d1)}</span><span class="sc"><span style="color:#7fbcff">${r.w}</span>–<span style="color:#ff8197">${r.l}</span></span><div class="trail">${se.map(x => `<span class="${x.res}">${letter(x.res)}</span>`).join("")}</div></div>`; }).join("")}</div>`;
+}
+
 let dashSel = null;
-function renderDash(rows, total) {
+function renderDash(rows, total, b) {
   if (!rows.length) { $("dash").innerHTML = ""; return; }
   const icon = o => ICON[o.a.id] || "mirror";
   const most = [...rows].sort((p, q) => q.r.n - p.r.n)[0];
@@ -686,6 +836,12 @@ function renderDash(rows, total) {
       <div class="axis-t"><span>↑ aproveitamento</span><span>batalhas →</span></div>
       <div class="plot-info" id="plotInfo">${sel ? `${esc(sel.a.name)}: ${sel.r.w}–${sel.r.l} em ${sel.r.n} ${sel.r.n === 1 ? "batalha" : "batalhas"} (${Math.round(sel.r.pct * 100)}%)` : "Toque numa carta do mapa para ver o placar."}</div>
     </div>
+    ${(() => { const cb = cardsThatBeatYou(b); return cb.length ? `<div class="panel">
+      <h3>Cartas que mais te derrotam</h3>
+      <p class="hint">Seu placar quando a carta está no deck dele (mínimo de 2 partidas).</p>
+      <div class="freq">${cb.map(o => `<div class="fr">${cardImg(o.c, "")}<div class="lane"><span>${esc(cardName(o.c))} <small>· ${o.r.w}–${o.r.l}</small></span><div class="track loss"><b style="width:${((1 - o.r.pct) * 100).toFixed(1)}%"></b></div></div><span class="pc red">${Math.round((1 - o.r.pct) * 100)}%</span></div>`).join("")}</div>
+      <p class="hint">Barra vermelha = % de derrota com a carta do lado dele.</p>
+    </div>` : ""; })()}
     <div class="panel">
       <h3>O que mais aparece</h3>
       <div class="freq">${freq.map(o => `<div class="fr">${cardImg(icon(o), "")}<div class="lane"><span>${esc(o.a.name)}</span><div class="track"><b style="width:${(o.r.n / freq[0].r.n * 100).toFixed(1)}%"></b></div></div><span class="pc">${Math.round(o.r.n / total * 100)}%</span></div>`).join("")}</div>
@@ -702,7 +858,7 @@ function renderMatchups(b) {
   const rows = Object.values(g).map(o => ({...o, r: rec(o.list)}))
     .sort((p, q) => (p.r.pct - q.r.pct) || (q.r.n - p.r.n));
   const open = new Set([...document.querySelectorAll("details.mu[open]")].map(d => d.id));
-  renderDash(rows, b.length);
+  renderDash(rows, b.length, b);
   if (!rows.length) { $("mus").innerHTML = `<div class="empty">Sem batalhas para montar os matchups.</div>`; return; }
   $("mus").innerHTML = rows.map(o => {
     const p = PLANS[o.a.id] || PLANS.outros;
@@ -744,15 +900,14 @@ function renderDeep() {
 }
 
 function render() {
+  renderDeckTabs(); renderDeckBox();
   const b = filtered();
-  renderScore(b); renderCard(); renderFeed(b); renderMatchups(b); renderDeep(); if (picked) renderRead();
-  document.querySelectorAll("[data-deck]").forEach(el => el.setAttribute("aria-pressed", el.dataset.deck === S.deck));
+  renderScore(b); renderCard(); renderFeed(b); renderMatchups(b); renderElixir(b); renderSessao(); renderDeep(); if (picked) renderRead();
   document.querySelectorAll("[data-per]").forEach(el => el.setAttribute("aria-pressed", el.dataset.per === S.per));
   const newest = S.all[0];
   if (S.loaded) $("liveTxt").textContent = newest ? "Ao vivo · " + ago(newest.ts) : "Ao vivo";
 }
 function saveFilters() { try { localStorage.setItem("liga4-filtros", JSON.stringify({deck: S.deck, per: S.per})); } catch (e) {} }
-document.querySelectorAll("[data-deck]").forEach(el => el.addEventListener("click", () => { S.deck = el.dataset.deck; S.feedN = 3; saveFilters(); render(); }));
 document.querySelectorAll("[data-per]").forEach(el => el.addEventListener("click", () => { S.per = el.dataset.per; S.feedN = 3; saveFilters(); render(); }));
 $("moreBtn").addEventListener("click", () => { S.feedN += 3; render(); });
 $("lessBtn").addEventListener("click", () => { S.feedN = 3; render(); $("sb-batalhas").scrollIntoView({block: "start"}); });
@@ -773,6 +928,20 @@ try { if (localStorage.getItem("liga4-perfil-aberto") === "0") setProfile(false)
 // deck aberto ou fechado: lembra a última escolha
 try { const d = localStorage.getItem("liga4-deck-aberto"); if (d !== null) $("deckbox").open = d === "1"; } catch (e) {}
 $("deckbox").addEventListener("toggle", () => { try { localStorage.setItem("liga4-deck-aberto", $("deckbox").open ? "1" : "0"); } catch (e) {} });
+
+// seção Deck acompanha a aba: Splashyard fixo; outros decks pelas cartas da última partida com ele
+const DECK_SY = { grid: $("deckGrid").innerHTML, sub: $("deckSub").innerHTML };
+function renderDeckBox() {
+  if (S.deck === "splashyard") {
+    if ($("deckGrid").dataset.k !== "splashyard") { $("deckGrid").innerHTML = DECK_SY.grid; $("deckSub").innerHTML = DECK_SY.sub; $("deckFoot").hidden = false; $("deckGrid").dataset.k = "splashyard"; }
+    $("deckbox").hidden = false; return;
+  }
+  const g = S.all.find(x => deckKey(x) === S.deck && x.me && x.me.length);
+  if (!g) { $("deckbox").hidden = true; return; }
+  $("deckbox").hidden = false; $("deckFoot").hidden = true; $("deckGrid").dataset.k = S.deck;
+  $("deckSub").textContent = deckName(S.deck) + " · última partida";
+  $("deckGrid").innerHTML = g.me.map(c => `<div class="gc">${cardImg(c, "")}<span class="lv">Nível 16</span><div class="mx">Máx.</div></div>`).join("");
+}
 
 // ---------- abas Painel / Live ----------
 function showView(v) {
