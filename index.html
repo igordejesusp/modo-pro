@@ -368,6 +368,16 @@ details.secbox[open] > summary .chev { transform: rotate(180deg); }
 .wh .lane span { font: 800 12px var(--body); display: block; }
 .wh .fm { font: 400 15px var(--display); text-align: right; text-shadow: 1.10px 0.00px 0.4px var(--ink), 1.02px 0.42px 0.4px var(--ink), 0.78px 0.78px 0.4px var(--ink), 0.42px 1.02px 0.4px var(--ink), 0.00px 1.10px 0.4px var(--ink), -0.42px 1.02px 0.4px var(--ink), -0.78px 0.78px 0.4px var(--ink), -1.02px 0.42px 0.4px var(--ink), -1.10px 0.00px 0.4px var(--ink), -1.02px -0.42px 0.4px var(--ink), -0.78px -0.78px 0.4px var(--ink), -0.42px -1.02px 0.4px var(--ink), -0.00px -1.10px 0.4px var(--ink), 0.42px -1.02px 0.4px var(--ink), 0.78px -0.78px 0.4px var(--ink), 1.02px -0.42px 0.4px var(--ink); }
 
+/* dias da guerra: lista que abre */
+details.wdrop { margin: 12px 12px 0; background: var(--inset); border-radius: 14px; box-shadow: inset 0 0 0 2px #4d2f93; }
+details.wdrop > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 10px 12px; }
+details.wdrop > summary::-webkit-details-marker { display: none; }
+details.wdrop .wd-t { font: 400 16px var(--display); text-shadow: 1.2px 0 0.4px var(--ink), -1.2px 0 0.4px var(--ink), 0 1.2px 0.4px var(--ink), 0 -1.2px 0.4px var(--ink), 0.85px 0.85px 0.4px var(--ink), -0.85px 0.85px 0.4px var(--ink), 0.85px -0.85px 0.4px var(--ink), -0.85px -0.85px 0.4px var(--ink); }
+details.wdrop .wd-s { flex: 1; text-align: right; font: 800 12.5px var(--body); color: var(--muted); }
+details.wdrop .chev { width: 22px; height: 22px; flex: none; }
+details.wdrop[open] .chev { transform: rotate(180deg); }
+details.wdrop .wdays { padding: 0 10px 12px; }
+
 /* análise */
 details.deep { background: var(--inset-2); border-radius: 16px; box-shadow: 0 0 0 3px #26124f, inset 0 0 0 2px #4d2f93; }
 details.deep > summary { cursor: pointer; padding: 12px 14px; font: 400 21px var(--display); color: var(--gold); text-shadow: 1.58px 0.00px 0.4px var(--ink), 1.46px 0.61px 0.4px var(--ink), 1.12px 1.12px 0.4px var(--ink), 0.61px 1.46px 0.4px var(--ink), 0.00px 1.58px 0.4px var(--ink), -0.61px 1.46px 0.4px var(--ink), -1.12px 1.12px 0.4px var(--ink), -1.46px 0.61px 0.4px var(--ink), -1.58px 0.00px 0.4px var(--ink), -1.46px -0.61px 0.4px var(--ink), -1.12px -1.12px 0.4px var(--ink), -0.61px -1.46px 0.4px var(--ink), -0.00px -1.58px 0.4px var(--ink), 0.61px -1.46px 0.4px var(--ink), 1.12px -1.12px 0.4px var(--ink), 1.46px -0.61px 0.4px var(--ink); }
@@ -633,7 +643,7 @@ const PLANS = {
 const ICON = {cerco:"x-bow", aereo:"lava-hound", gcem:"giant", egiant:"electro-giant", ggob:"goblin-giant", golem:"golem", rg:"royal-giant", tanque:"goblinstein", servo:"minion-giant", corredor:"hog-rider", mk:"mega-knight", porcos:"royal-hogs", ponte:"battle-ram", bait:"goblin-barrel", cemiterio:"graveyard", subterraneo:"miner", sparky:"sparky", outros:"mirror"};
 // coroa no mesmo desenho da barra do topo (símbolos crown-b e crown-r)
 const CROWN = c => `<svg viewBox="0 0 100 84" aria-hidden="true"><use href="#crown-${c}"/></svg>`;
-const S = { all: [], warAll: [], war: null, mode: "liga", wdeck: "all", deck: "splashyard", per: "all", feedN: 3, loaded: false };
+const S = { wdOpen: false, all: [], warAll: [], war: null, mode: "liga", wdeck: "all", deck: "splashyard", per: "all", feedN: 3, loaded: false };
 try { const p = JSON.parse(localStorage.getItem("liga4-filtros") || "{}"); if (p.deck) S.deck = p.deck; if (p.per) S.per = p.per; if (p.mode) S.mode = p.mode; } catch (e) {}
 
 const $ = id => document.getElementById(id);
@@ -687,7 +697,7 @@ function deckName(k) {
 }
 function renderDeckTabs() {
   if (!hasWar()) S.mode = "liga";
-  $("deckTabs").innerHTML = [["liga", "Liga"], ["war", "Guerra"]].filter(([k]) => k === "liga" || hasWar())
+  $("deckTabs").innerHTML = [["liga", "Ranked"], ["war", "Guerra"]].filter(([k]) => k === "liga" || hasWar())
     .map(([k, n]) => `<button class="tab" type="button" data-mode="${k}" aria-pressed="${k === S.mode}">${n}</button>`).join("");
   if (S.mode === "war") {
     const ds = warDecks(warGames(S.warAll)).slice(0, 6);
@@ -807,7 +817,8 @@ function renderWarBox() {
       <div class="mi"><span class="k">Sua fama</span><span class="v" style="color:var(--gold)">${(me.fame || 0).toLocaleString("pt-BR")}</span></div>
       <div class="mi"><span class="k">No clã</span><span class="v">${me.fame && W.myRank ? W.myRank + "º" : "–"}</span></div>
     </div>
-    <div class="wdays">${days.map(d => `<div class="wd${pt !== "training" && d.n === nw.n ? " today" : ""}"><span class="k">${DN[d.n]}</span><span class="v"><span style="color:#7fbcff">${d.r.w}</span>–<span style="color:#ff8197">${d.r.l}</span></span>${slots(d.used)}</div>`).join("")}</div>
+    <details class="wdrop" id="wdrop"${S.wdOpen ? " open" : ""}><summary><span class="wd-t">Dias da guerra</span><span class="wd-s">${pt && pt !== "training" ? `hoje: <span style="color:#7fbcff">${(days[nw.n - 1] || {r: {w: 0}}).r.w}</span>–<span style="color:#ff8197">${(days[nw.n - 1] || {r: {l: 0}}).r.l}</span>` : "quinta a domingo"}</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9 L12 16 L19 9" fill="none" stroke="#24104d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9 L12 16 L19 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+    <div class="wdays">${days.map(d => `<div class="wd${pt !== "training" && d.n === nw.n ? " today" : ""}"><span class="k">${DN[d.n]}</span><span class="v"><span style="color:#7fbcff">${d.r.w}</span>–<span style="color:#ff8197">${d.r.l}</span></span>${slots(d.used)}</div>`).join("")}</div></details>
     <div class="stats"><div class="boxes">
       <div class="box"><span class="lbl">Vitórias</span><span class="val" style="color:#7fbcff">${r.w}</span></div>
       <div class="box"><span class="lbl">Derrotas</span><span class="val" style="color:#ff8197">${r.l}</span></div>
@@ -821,6 +832,8 @@ function renderWarBox() {
     </div>`;
 }
 
+$("warBox").addEventListener("toggle", e => { if (e.target.id === "wdrop") { S.wdOpen = e.target.open; try { localStorage.setItem("liga4-wdias", S.wdOpen ? "1" : "0"); } catch (x) {} } }, true);
+try { S.wdOpen = localStorage.getItem("liga4-wdias") === "1"; } catch (e) {}
 function renderWarHist() {
   const el = $("pWarHist");
   const h = S.war ? S.war.history.filter(x => x.decks > 0) : [];  // só as guerras em que você jogou
@@ -841,7 +854,7 @@ function renderWarHist() {
 
 function renderScore(b) {
   const r = rec(b);
-  const per = S.mode === "war" ? {day: "Hoje", week: "Esta guerra", all: "Todas as guerras"}[S.per] : {day: "Hoje", week: "Últimos 7 dias", all: "Todo o histórico"}[S.per];
+  const per = S.mode === "war" ? {day: "Hoje", week: "Guerra desta semana", all: "Todas as guerras"}[S.per] : {day: "Hoje", week: "Últimos 7 dias", all: "Todo o histórico"}[S.per];
   const last10 = b.slice(0, 10).reverse();
   // sequência atual: deck filtrado, sem filtro de período
   const streakList = base();
@@ -1127,7 +1140,7 @@ function render() {
   renderDeckTabs(); renderPillMode(); renderDeckBox();
   const b = filtered();
   renderScore(b); renderCard(); renderWarBox(); renderFeed(b); renderMatchups(b); renderWarHist(); renderElixir(b); renderSessao(); renderDeep();
-  const PL = S.mode === "war" ? {day: "Hoje", week: "Guerra", all: "Todas"} : {day: "Hoje", week: "7d", all: "Tudo"};
+  const PL = S.mode === "war" ? {day: "Hoje", week: "Semana", all: "Tudo"} : {day: "Hoje", week: "7d", all: "Tudo"};
   document.querySelectorAll("[data-per]").forEach(el => { el.textContent = PL[el.dataset.per]; });
   document.querySelectorAll("[data-per]").forEach(el => el.setAttribute("aria-pressed", el.dataset.per === S.per));
   const newest = S.all[0];
