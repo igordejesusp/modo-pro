@@ -317,6 +317,57 @@ details.secbox[open] > summary .chev { transform: rotate(180deg); }
 .se .trail { grid-column: 1 / -1; flex-wrap: wrap; }
 .se .trail span { width: 16px; height: 19px; font-size: 10px; padding-bottom: 4px; }
 
+/* chips de deck (Liga) e dos decks de guerra */
+.chips { display: flex; gap: 6px; overflow-x: auto; padding: 0 4px; scrollbar-width: none; margin-top: -6px; }
+.chips::-webkit-scrollbar { display: none; }
+.chips:empty { display: none; }
+.chips button { flex: none; border: 0; cursor: pointer; border-radius: 999px; padding: 6px 12px; background: var(--inset); box-shadow: inset 0 0 0 2px #4d2f93; font: 800 12.5px var(--body); color: var(--muted); white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
+.chips button img { width: 18px; height: 22px; object-fit: contain; }
+.chips button[aria-pressed="true"] { background: linear-gradient(180deg, #ffe07a, var(--gold) 55%, var(--gold-dk)); color: var(--ink); box-shadow: 0 0 0 2px var(--ink); }
+
+/* guerra */
+.pbar.static { cursor: default; }
+.wsub { padding: 10px 14px 0; font: 800 13px var(--body); color: var(--muted); }
+.wsub b { color: var(--gold); }
+.slots { display: inline-flex; gap: 3px; margin-top: 4px; }
+.slots i { width: 12px; height: 15px; border-radius: 3px; background: rgba(255, 255, 255, .15); box-shadow: inset 0 0 0 1.5px rgba(0, 0, 0, .35); }
+.slots i.on { background: linear-gradient(180deg, #ffe07a, var(--gold-dk)); }
+.wdays { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; padding: 12px 12px 0; }
+.wd { background: var(--inset); border-radius: 12px; box-shadow: inset 0 0 0 2px #4d2f93; padding: 6px 4px 8px; text-align: center; min-width: 0; }
+.wd.today { box-shadow: inset 0 0 0 2px var(--gold); }
+.wd .k { display: block; font: 400 14px var(--display); color: var(--gold); text-shadow: 1.10px 0.00px 0.4px var(--ink), 1.02px 0.42px 0.4px var(--ink), 0.78px 0.78px 0.4px var(--ink), 0.42px 1.02px 0.4px var(--ink), 0.00px 1.10px 0.4px var(--ink), -0.42px 1.02px 0.4px var(--ink), -0.78px 0.78px 0.4px var(--ink), -1.02px 0.42px 0.4px var(--ink), -1.10px 0.00px 0.4px var(--ink), -1.02px -0.42px 0.4px var(--ink), -0.78px -0.78px 0.4px var(--ink), -0.42px -1.02px 0.4px var(--ink), -0.00px -1.10px 0.4px var(--ink), 0.42px -1.02px 0.4px var(--ink), 0.78px -0.78px 0.4px var(--ink), 1.02px -0.42px 0.4px var(--ink); }
+.wd .v { display: block; font: 400 18px var(--display); text-shadow: 1.40px 0.00px 0.4px var(--ink), 1.29px 0.54px 0.4px var(--ink), 0.99px 0.99px 0.4px var(--ink), 0.54px 1.29px 0.4px var(--ink), 0.00px 1.40px 0.4px var(--ink), -0.54px 1.29px 0.4px var(--ink), -0.99px 0.99px 0.4px var(--ink), -1.29px 0.54px 0.4px var(--ink), -1.40px 0.00px 0.4px var(--ink), -1.29px -0.54px 0.4px var(--ink), -0.99px -0.99px 0.4px var(--ink), -0.54px -1.29px 0.4px var(--ink), -0.00px -1.40px 0.4px var(--ink), 0.54px -1.29px 0.4px var(--ink), 0.99px -0.99px 0.4px var(--ink), 1.29px -0.54px 0.4px var(--ink); }
+.wd .slots { justify-content: center; }
+.wd .slots i { width: 9px; height: 11px; }
+.race { display: flex; flex-direction: column; gap: 6px; }
+.rc { display: grid; grid-template-columns: 22px minmax(0, 1fr) 56px; gap: 8px; align-items: center; }
+.rc .pos { font: 400 16px var(--display); text-align: center; text-shadow: 1.20px 0.00px 0.4px var(--ink), 1.11px 0.46px 0.4px var(--ink), 0.85px 0.85px 0.4px var(--ink), 0.46px 1.11px 0.4px var(--ink), 0.00px 1.20px 0.4px var(--ink), -0.46px 1.11px 0.4px var(--ink), -0.85px 0.85px 0.4px var(--ink), -1.11px 0.46px 0.4px var(--ink), -1.20px 0.00px 0.4px var(--ink), -1.11px -0.46px 0.4px var(--ink), -0.85px -0.85px 0.4px var(--ink), -0.46px -1.11px 0.4px var(--ink), -0.00px -1.20px 0.4px var(--ink), 0.46px -1.11px 0.4px var(--ink), 0.85px -0.85px 0.4px var(--ink), 1.11px -0.46px 0.4px var(--ink); }
+.rc .lane span { font: 800 12px var(--body); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.rc.mine .lane span { color: var(--gold); }
+.rc .fm { font: 400 14px var(--display); text-align: right; text-shadow: 1.10px 0.00px 0.4px var(--ink), 1.02px 0.42px 0.4px var(--ink), 0.78px 0.78px 0.4px var(--ink), 0.42px 1.02px 0.4px var(--ink), 0.00px 1.10px 0.4px var(--ink), -0.42px 1.02px 0.4px var(--ink), -0.78px 0.78px 0.4px var(--ink), -1.02px 0.42px 0.4px var(--ink), -1.10px 0.00px 0.4px var(--ink), -1.02px -0.42px 0.4px var(--ink), -0.78px -0.78px 0.4px var(--ink), -0.42px -1.02px 0.4px var(--ink), -0.00px -1.10px 0.4px var(--ink), 0.42px -1.02px 0.4px var(--ink), 0.78px -0.78px 0.4px var(--ink), 1.02px -0.42px 0.4px var(--ink); }
+.wdeck { display: flex; flex-direction: column; gap: 6px; background: var(--inset); border-radius: 12px; padding: 8px 10px; }
+.wdeck-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.wdeck-h b { font: 400 15px var(--display); text-shadow: 1.20px 0.00px 0.4px var(--ink), 1.11px 0.46px 0.4px var(--ink), 0.85px 0.85px 0.4px var(--ink), 0.46px 1.11px 0.4px var(--ink), 0.00px 1.20px 0.4px var(--ink), -0.46px 1.11px 0.4px var(--ink), -0.85px 0.85px 0.4px var(--ink), -1.11px 0.46px 0.4px var(--ink), -1.20px 0.00px 0.4px var(--ink), -1.11px -0.46px 0.4px var(--ink), -0.85px -0.85px 0.4px var(--ink), -0.46px -1.11px 0.4px var(--ink), -0.00px -1.20px 0.4px var(--ink), 0.46px -1.11px 0.4px var(--ink), 0.85px -0.85px 0.4px var(--ink), 1.11px -0.46px 0.4px var(--ink); }
+.wdeck-h span { font: 800 12px var(--body); color: var(--muted); white-space: nowrap; }
+.wdeck .row8 { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 3px; }
+.wdeck .row8 img, .wdeck .row8 .nf { width: 100%; display: block; aspect-ratio: 102 / 150; object-fit: contain; }
+.wpanel { margin: 12px 12px 0; display: flex; flex-direction: column; gap: 8px; }
+.wpanel h3 { font-size: 17px; }
+.tagw { font: 800 10.5px var(--body); color: var(--ink); background: var(--gold); border-radius: 5px; padding: 1px 6px; margin-left: 6px; vertical-align: 2px; }
+.rounds { display: flex; flex-direction: column; gap: 6px; padding: 8px 10px 4px; }
+.rnd { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 8px; align-items: center; }
+.rnd .rr { font: 400 13px var(--display); text-align: center; border-radius: 8px; padding: 3px 0; text-shadow: 1.00px 0.00px 0.4px var(--ink), 0.92px 0.38px 0.4px var(--ink), 0.71px 0.71px 0.4px var(--ink), 0.38px 0.92px 0.4px var(--ink), 0.00px 1.00px 0.4px var(--ink), -0.38px 0.92px 0.4px var(--ink), -0.71px 0.71px 0.4px var(--ink), -0.92px 0.38px 0.4px var(--ink), -1.00px 0.00px 0.4px var(--ink), -0.92px -0.38px 0.4px var(--ink), -0.71px -0.71px 0.4px var(--ink), -0.38px -0.92px 0.4px var(--ink), -0.00px -1.00px 0.4px var(--ink), 0.38px -0.92px 0.4px var(--ink), 0.71px -0.71px 0.4px var(--ink), 0.92px -0.38px 0.4px var(--ink); }
+.rnd .rr.W { background: var(--win-dk); } .rnd .rr.L { background: var(--loss-dk); } .rnd .rr.D { background: #6f7290; }
+.rnd .bl-cards { padding: 0; }
+.whist { display: flex; flex-direction: column; gap: 6px; }
+.wh { display: grid; grid-template-columns: 34px minmax(0, 1fr) 54px; gap: 8px; align-items: center; background: var(--inset); border-radius: 10px; padding: 6px 10px; }
+.wh .medal { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font: 400 15px var(--display); background: linear-gradient(180deg, #ffe07a, var(--gold-dk)); box-shadow: 0 0 0 2px var(--ink); text-shadow: 1.00px 0.00px 0.4px var(--ink), 0.92px 0.38px 0.4px var(--ink), 0.71px 0.71px 0.4px var(--ink), 0.38px 0.92px 0.4px var(--ink), 0.00px 1.00px 0.4px var(--ink), -0.38px 0.92px 0.4px var(--ink), -0.71px 0.71px 0.4px var(--ink), -0.92px 0.38px 0.4px var(--ink), -1.00px 0.00px 0.4px var(--ink), -0.92px -0.38px 0.4px var(--ink), -0.71px -0.71px 0.4px var(--ink), -0.38px -0.92px 0.4px var(--ink), -0.00px -1.00px 0.4px var(--ink), 0.38px -0.92px 0.4px var(--ink), 0.71px -0.71px 0.4px var(--ink), 0.92px -0.38px 0.4px var(--ink); }
+.wh .medal.r2 { background: linear-gradient(180deg, #f1f4fb, #9aa3b8); }
+.wh .medal.r3 { background: linear-gradient(180deg, #f3c08b, #b06a2c); }
+.wh .medal.rx { background: var(--inset-2); }
+.wh .lane span { font: 800 12px var(--body); display: block; }
+.wh .fm { font: 400 15px var(--display); text-align: right; text-shadow: 1.10px 0.00px 0.4px var(--ink), 1.02px 0.42px 0.4px var(--ink), 0.78px 0.78px 0.4px var(--ink), 0.42px 1.02px 0.4px var(--ink), 0.00px 1.10px 0.4px var(--ink), -0.42px 1.02px 0.4px var(--ink), -0.78px 0.78px 0.4px var(--ink), -1.02px 0.42px 0.4px var(--ink), -1.10px 0.00px 0.4px var(--ink), -1.02px -0.42px 0.4px var(--ink), -0.78px -0.78px 0.4px var(--ink), -0.42px -1.02px 0.4px var(--ink), -0.00px -1.10px 0.4px var(--ink), 0.42px -1.02px 0.4px var(--ink), 0.78px -0.78px 0.4px var(--ink), 1.02px -0.42px 0.4px var(--ink); }
+
 /* análise */
 details.deep { background: var(--inset-2); border-radius: 16px; box-shadow: 0 0 0 3px #26124f, inset 0 0 0 2px #4d2f93; }
 details.deep > summary { cursor: pointer; padding: 12px 14px; font: 400 21px var(--display); color: var(--gold); text-shadow: 1.58px 0.00px 0.4px var(--ink), 1.46px 0.61px 0.4px var(--ink), 1.12px 1.12px 0.4px var(--ink), 0.61px 1.46px 0.4px var(--ink), 0.00px 1.58px 0.4px var(--ink), -0.61px 1.46px 0.4px var(--ink), -1.12px 1.12px 0.4px var(--ink), -1.46px 0.61px 0.4px var(--ink), -1.58px 0.00px 0.4px var(--ink), -1.46px -0.61px 0.4px var(--ink), -1.12px -1.12px 0.4px var(--ink), -0.61px -1.46px 0.4px var(--ink), -0.00px -1.58px 0.4px var(--ink), 0.61px -1.46px 0.4px var(--ink), 1.12px -1.12px 0.4px var(--ink), 1.46px -0.61px 0.4px var(--ink); }
@@ -429,7 +480,7 @@ a.go[aria-disabled="true"] { filter: grayscale(.8) brightness(.7); pointer-event
     <div class="pill" id="pL"><svg viewBox="0 0 100 84" aria-label="Derrotas"><use href="#crown-r"/></svg>–</div>
   </div>
 
-  <div class="tabs" id="deckTabs" role="group" aria-label="Deck">
+  <div class="tabs" id="deckTabs" role="group" aria-label="Modo de jogo">
 
   </div>
 
@@ -443,7 +494,10 @@ a.go[aria-disabled="true"] { filter: grayscale(.8) brightness(.7); pointer-event
     </div>
   </div>
 
+  <div class="chips" id="deckChips" role="group" aria-label="Deck"></div>
+
   <section class="view" id="v-perfil">
+  <section class="profile" id="warBox" hidden></section>
   <section class="profile" id="profile">
     <button class="pbar" id="pToggle" type="button" aria-expanded="true" aria-controls="pBody"><span class="t">Perfil</span><span class="live" id="live"><i></i><span id="liveTxt">Conectando…</span></span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9 L12 16 L19 9" fill="none" stroke="#24104d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9 L12 16 L19 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <div id="pBody">
@@ -498,6 +552,7 @@ a.go[aria-disabled="true"] { filter: grayscale(.8) brightness(.7); pointer-event
   <section class="view" id="v-desempenho" hidden>
     <div class="sech"><h2>Desempenho</h2><span>elixir e cabeça<br>nas suas sessões</span></div>
     <div class="secbody">
+      <div class="panel" id="pWarHist" hidden></div>
       <div class="panel" id="pElixir"></div>
       <div class="panel" id="pSessao"></div>
   </section>
@@ -578,8 +633,8 @@ const PLANS = {
 const ICON = {cerco:"x-bow", aereo:"lava-hound", gcem:"giant", egiant:"electro-giant", ggob:"goblin-giant", golem:"golem", rg:"royal-giant", tanque:"goblinstein", servo:"minion-giant", corredor:"hog-rider", mk:"mega-knight", porcos:"royal-hogs", ponte:"battle-ram", bait:"goblin-barrel", cemiterio:"graveyard", subterraneo:"miner", sparky:"sparky", outros:"mirror"};
 // coroa no mesmo desenho da barra do topo (símbolos crown-b e crown-r)
 const CROWN = c => `<svg viewBox="0 0 100 84" aria-hidden="true"><use href="#crown-${c}"/></svg>`;
-const S = { all: [], deck: "splashyard", per: "all", feedN: 3, loaded: false };
-try { const p = JSON.parse(localStorage.getItem("liga4-filtros") || "{}"); if (p.deck) S.deck = p.deck; if (p.per) S.per = p.per; } catch (e) {}
+const S = { all: [], warAll: [], war: null, mode: "liga", wdeck: "all", deck: "splashyard", per: "all", feedN: 3, loaded: false };
+try { const p = JSON.parse(localStorage.getItem("liga4-filtros") || "{}"); if (p.deck) S.deck = p.deck; if (p.per) S.per = p.per; if (p.mode) S.mode = p.mode; } catch (e) {}
 
 const $ = id => document.getElementById(id);
 function esc(s) { return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
@@ -592,10 +647,24 @@ function ago(ts) {
 }
 function startOfDay() { const d = new Date(); d.setHours(0, 0, 0, 0); return d.getTime() / 1000; }
 function filtered() {
-  let b = S.all;
-  b = b.filter(x => deckKey(x) === S.deck);
+  let b = base();
+  if (S.mode === "war") {
+    const nw = nowWar();
+    if (S.per === "day") b = b.filter(x => warDay(x.ts).day === nw.day);
+    if (S.per === "week") b = b.filter(x => warDay(x.ts).war === nw.war);
+    return b;
+  }
   if (S.per === "day") b = b.filter(x => x.ts >= startOfDay());
   if (S.per === "week") b = b.filter(x => x.ts >= Date.now() / 1000 - 7 * 86400);
+  return b;
+}
+// batalhas inteiras (duelo com as rodadas juntas) para o feed da guerra
+function warFeed() {
+  const nw = nowWar();
+  let b = S.warAll;
+  if (S.wdeck !== "all") b = b.filter(x => (x.rounds && x.rounds.length ? x.rounds : [x]).some(r => sig(r.me) === S.wdeck));
+  if (S.per === "day") b = b.filter(x => warDay(x.ts).day === nw.day);
+  if (S.per === "week") b = b.filter(x => warDay(x.ts).war === nw.war);
   return b;
 }
 function rec(list) { const w = list.filter(x => x.res === "W").length, l = list.filter(x => x.res === "L").length; return {w, l, n: w + l, pct: w + l ? w / (w + l) : 0}; }
@@ -617,14 +686,32 @@ function deckName(k) {
   return "Outro deck";
 }
 function renderDeckTabs() {
+  if (!hasWar()) S.mode = "liga";
+  $("deckTabs").innerHTML = [["liga", "Liga"], ["war", "Guerra"]].filter(([k]) => k === "liga" || hasWar())
+    .map(([k, n]) => `<button class="tab" type="button" data-mode="${k}" aria-pressed="${k === S.mode}">${n}</button>`).join("");
+  if (S.mode === "war") {
+    const ds = warDecks(warGames(S.warAll)).slice(0, 6);
+    if (S.wdeck !== "all" && !ds.some(d => d.k === S.wdeck)) S.wdeck = "all";
+    $("deckChips").innerHTML = ds.length ? [`<button type="button" data-wdeck="all" aria-pressed="${S.wdeck === "all"}">Todos os decks</button>`]
+      .concat(ds.map(d => `<button type="button" data-wdeck="${esc(d.k)}" aria-pressed="${S.wdeck === d.k}">${cardImg(d.me[0], "")}${esc(warDeckName(d.me))}</button>`)).join("") : "";
+    return;
+  }
+  renderLigaChips();
+}
+function renderLigaChips() {
   const cnt = {};
   S.all.forEach(x => { const k = deckKey(x); cnt[k] = (cnt[k] || 0) + 1; });
   const keys = Object.keys(cnt).sort((p, q) => (q === "splashyard") - (p === "splashyard") || cnt[q] - cnt[p]);
   if (!keys.includes("splashyard")) keys.unshift("splashyard");
   if (!keys.includes(S.deck)) S.deck = "splashyard";
-  $("deckTabs").innerHTML = keys.map(k => `<button class="tab" type="button" data-deck="${k}" aria-pressed="${k === S.deck}">${esc(deckName(k))}</button>`).join("");
+  $("deckChips").innerHTML = keys.length > 1 ? keys.map(k => `<button type="button" data-deck="${k}" aria-pressed="${k === S.deck}">${esc(deckName(k))}</button>`).join("") : "";
 }
-$("deckTabs").addEventListener("click", e => { const b = e.target.closest("[data-deck]"); if (!b) return; S.deck = b.dataset.deck; S.feedN = 3; saveFilters(); render(); });
+$("deckTabs").addEventListener("click", e => { const b = e.target.closest("[data-mode]"); if (!b) return; S.mode = b.dataset.mode; S.feedN = 3; saveFilters(); render(); });
+$("deckChips").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  if (b.dataset.wdeck) S.wdeck = b.dataset.wdeck; else S.deck = b.dataset.deck;
+  S.feedN = 3; saveFilters(); render();
+});
 const letter = r => r === "W" ? "V" : r === "L" ? "D" : "E";
 const resWord = r => r === "W" ? "Vitória" : r === "L" ? "Derrota" : "Empate";
 
@@ -640,12 +727,124 @@ document.addEventListener("error", e => {
   const d = document.createElement("div"); d.className = "nf"; d.textContent = img.alt; img.replaceWith(d);
 }, true);
 
+// ================= Guerra =================
+// o dia de guerra vira por volta das 06:50 de Brasília (09:50 UTC); quinta a domingo = dias 1 a 4
+const WAR_RESET = 9 * 3600 + 50 * 60;
+const WDAY = {4: 1, 5: 2, 6: 3, 0: 4};
+function warDay(ts) {
+  const d = new Date((ts - WAR_RESET) * 1000), wd = d.getUTCDay();
+  const thu = new Date(d); thu.setUTCDate(d.getUTCDate() - ((wd - 4 + 7) % 7));
+  return {n: WDAY[wd] || 0, war: thu.toISOString().slice(0, 10), day: d.toISOString().slice(0, 10)};
+}
+const nowWar = () => warDay(Math.floor(Date.now() / 1000));
+// cada rodada de duelo é uma partida com um deck; barco fica de fora das contas de deck
+function warGames(list) {
+  const out = [];
+  list.forEach(x => {
+    if (x.wtype === "boat") return;
+    if (x.rounds && x.rounds.length) x.rounds.forEach((r, i) => out.push({...r, ts: x.ts - i, wtype: "duel", parent: x.ts}));
+    else out.push(x);
+  });
+  return out;
+}
+const sig = me => (me || []).slice().sort().join(",");
+function warDeckName(me) {
+  const s = new Set(me || []);
+  if (s.has("graveyard") && s.has("ice-wizard")) return "Splashyard";
+  const a = archOf(me || []);
+  return a.id === "outros" ? "Deck " + cardName((me || [])[0] || "") : a.name;
+}
+function warDecks(games) {
+  const by = {};
+  games.forEach(g => { const k = sig(g.me); if (!k) return; (by[k] ||= {k, me: g.me, list: [], last: 0}).list.push(g); by[k].last = Math.max(by[k].last, g.ts); });
+  return Object.values(by).sort((p, q) => q.list.length - p.list.length || q.last - p.last);
+}
+// lista base do modo: Liga = partidas do deck escolhido; Guerra = partidas (rodadas) do deck escolhido
+function base() {
+  if (S.mode === "war") { const g = warGames(S.warAll); return S.wdeck === "all" ? g : g.filter(x => sig(x.me) === S.wdeck); }
+  return S.all.filter(x => deckKey(x) === S.deck);
+}
+const hasWar = () => !!(S.war || S.warAll.length);
+function periodLabel() {
+  if (!S.war) return "Guerra";
+  const t = S.war.period.type, n = nowWar().n;
+  if (t === "training") return "Treino";
+  return (t === "colosseum" ? "Coliseu " : "Dia ") + (n || "");
+}
+const SWORDS = `<svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#24104d" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"><path d="M7 5 L11 5 L26 22 L22 26 L5 11 Z" fill="url(#ni-steel)"/><path d="M33 5 L29 5 L14 22 L18 26 L35 11 Z" fill="url(#ni-steel)"/><path d="M19 27 L13 21 L10 24 L16 30 Z" fill="url(#ni-gold)"/><path d="M21 27 L27 21 L30 24 L24 30 Z" fill="url(#ni-gold)"/><circle cx="7.5" cy="34.5" r="2.6" fill="url(#ni-gold)"/><circle cx="32.5" cy="34.5" r="2.6" fill="url(#ni-gold)"/></g></svg>`;
+const LEAGUE_PILL = $("pLeague").innerHTML;
+function renderPillMode() {
+  if (S.mode === "war") $("pLeague").innerHTML = SWORDS + esc(periodLabel());
+  else if ($("pLeague").innerHTML !== LEAGUE_PILL) $("pLeague").innerHTML = LEAGUE_PILL;
+}
+const slots = (n, of = 4) => `<span class="slots">${Array.from({length: of}, (_, i) => `<i class="${i < n ? "on" : ""}"></i>`).join("")}</span>`;
+
+function renderWarBox() {
+  const box = $("warBox");
+  if (S.mode !== "war") { box.hidden = true; $("profile").hidden = false; return; }
+  box.hidden = false; $("profile").hidden = true; $("deckbox").hidden = true;
+  const W = S.war, nw = nowWar();
+  const all = warGames(S.warAll);
+  const cur = all.filter(g => warDay(g.ts).war === nw.war);
+  const pt = W ? W.period.type : null;
+  const sub = !W ? "Sem dados da guerra ainda." :
+    pt === "training" ? `Dias de treino · a próxima guerra começa na <b>quinta</b>` :
+    `<b>${pt === "colosseum" ? "Coliseu" : "Guerra"} · dia ${nw.n} de 4</b> · semana ${W.period.week + 1}`;
+  const me = W ? W.me : {};
+  const today = pt && pt !== "training" ? (me.decksUsedToday || 0) : 0;
+  const r = rec(cur);
+  // dias da guerra atual
+  const days = [1, 2, 3, 4].map(n => { const l = cur.filter(g => warDay(g.ts).n === n); return {n, r: rec(l), used: l.length}; });
+  const DN = {1: "Qui", 2: "Sex", 3: "Sáb", 4: "Dom"};
+  const race = W ? W.race : [];
+  const maxF = Math.max(1, ...race.map(c => c.fame));
+  const decks = warDecks(cur.length ? cur : all).slice(0, 4);
+  box.innerHTML = `
+    <div class="pbar static"><span class="t">Guerra</span><span class="live on"><i></i><span>${esc(W ? W.clan.name : "Clã")}</span></span></div>
+    <div class="wsub">${sub}</div>
+    <div class="mini" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+      <div class="mi"><span class="k">Decks hoje</span><span class="v">${today}/4</span>${slots(today)}</div>
+      <div class="mi"><span class="k">Sua fama</span><span class="v" style="color:var(--gold)">${(me.fame || 0).toLocaleString("pt-BR")}</span></div>
+      <div class="mi"><span class="k">No clã</span><span class="v">${me.fame && W.myRank ? W.myRank + "º" : "–"}</span></div>
+    </div>
+    <div class="wdays">${days.map(d => `<div class="wd${pt !== "training" && d.n === nw.n ? " today" : ""}"><span class="k">${DN[d.n]}</span><span class="v"><span style="color:#7fbcff">${d.r.w}</span>–<span style="color:#ff8197">${d.r.l}</span></span>${slots(d.used)}</div>`).join("")}</div>
+    <div class="stats"><div class="boxes">
+      <div class="box"><span class="lbl">Vitórias</span><span class="val" style="color:#7fbcff">${r.w}</span></div>
+      <div class="box"><span class="lbl">Derrotas</span><span class="val" style="color:#ff8197">${r.l}</span></div>
+      <div class="box"><span class="lbl">Aproveit.</span><span class="val">${r.n ? Math.round(r.pct * 100) + "%" : "–"}</span></div>
+    </div><span class="ctx" style="font:800 12px var(--body);color:var(--muted)">Esta guerra · cada rodada de duelo conta como uma partida</span></div>
+    ${race.some(c => c.fame > 0) ? `<div class="wpanel"><h3>Corrida do clã</h3><div class="race">${race.map((c, i) => `<div class="rc${c.mine ? " mine" : ""}"><span class="pos">${i + 1}º</span><div class="lane"><span>${esc(c.name)}</span><div class="track"><b style="width:${(c.fame / maxF * 100).toFixed(1)}%"></b></div></div><span class="fm">${c.fame.toLocaleString("pt-BR")}</span></div>`).join("")}</div></div>` : ""}
+    ${race.length && !race.some(c => c.fame > 0) ? `<div class="wpanel"><h3>Corrida do clã</h3><p class="hint">A corrida zera no treino e volta na quinta, no 1º dia de guerra.</p></div>` : ""}
+    <div class="wpanel" style="padding-bottom:14px"><h3>Seus decks de guerra</h3>
+      ${decks.length ? decks.map(d => { const dr = rec(d.list); return `<div class="wdeck"><div class="wdeck-h"><b>${esc(warDeckName(d.me))}</b><span><span style="color:#7fbcff">${dr.w}</span>–<span style="color:#ff8197">${dr.l}</span> · ${dr.n ? Math.round(dr.pct * 100) + "%" : "–"}</span></div><div class="row8">${d.me.map(c => cardImg(c, "")).join("")}</div></div>`; }).join("")
+        : `<p class="hint">Os decks aparecem aqui depois das primeiras batalhas de guerra (a coleta começou em 28/10).</p>`}
+    </div>`;
+}
+
+function renderWarHist() {
+  const el = $("pWarHist");
+  const h = S.war ? S.war.history.filter(x => x.decks > 0) : [];  // só as guerras em que você jogou
+  if (S.mode !== "war" || !h.length) { el.hidden = true; return; }
+  el.hidden = false;
+  const maxF = Math.max(1, ...h.map(x => x.fame));
+  const avg = Math.round(h.reduce((t, x) => t + x.fame, 0) / h.length);
+  const decks = h.reduce((t, x) => t + x.decks, 0);
+  el.innerHTML = `<h3>Suas guerras</h3>
+    <div class="trio">
+      <div class="mi"><span class="k">Fama média</span><span class="v" style="color:var(--gold)">${avg.toLocaleString("pt-BR")}</span></div>
+      <div class="mi"><span class="k">Decks usados</span><span class="v">${decks}/${h.length * 16}</span></div>
+      <div class="mi"><span class="k">Clã em 1º</span><span class="v">${h.filter(x => x.rank === 1).length}/${h.length}</span></div>
+    </div>
+    <div class="whist">${h.map(x => `<div class="wh"><span class="medal ${x.rank === 1 ? "" : x.rank === 2 ? "r2" : x.rank === 3 ? "r3" : "rx"}">${x.rank}º</span><div class="lane"><span>Temporada ${x.season} · semana ${x.week + 1} · ${x.decks}/16 decks</span><div class="track"><b style="width:${(x.fame / maxF * 100).toFixed(1)}%"></b></div></div><span class="fm">${x.fame.toLocaleString("pt-BR")}</span></div>`).join("")}</div>
+    <p class="hint">Fama sua em cada guerra e posição final do clã. Pro de clã fecha 16/16 toda semana.</p>`;
+}
+
 function renderScore(b) {
   const r = rec(b);
-  const per = {day: "Hoje", week: "Últimos 7 dias", all: "Todo o histórico"}[S.per];
+  const per = S.mode === "war" ? {day: "Hoje", week: "Esta guerra", all: "Todas as guerras"}[S.per] : {day: "Hoje", week: "Últimos 7 dias", all: "Todo o histórico"}[S.per];
   const last10 = b.slice(0, 10).reverse();
   // sequência atual: deck filtrado, sem filtro de período
-  const streakList = S.all.filter(x => deckKey(x) === S.deck);
+  const streakList = base();
   let k = 0; const first = streakList[0]?.res;
   while (k < streakList.length && streakList[k].res === first) k++;
   let alert = "";
@@ -659,12 +858,13 @@ function renderScore(b) {
       <div class="box"><span class="lbl">Aproveit.</span><span class="val">${r.n ? Math.round(r.pct * 100) + "%" : "–"}</span></div>
     </div>
     <div class="trailrow">
-      <span class="ctx">${per} · ${esc(deckName(S.deck))}</span>
+      <span class="ctx">${per} · ${esc(S.mode === "war" ? (S.wdeck === "all" ? "todos os decks" : warDeckName(S.wdeck.split(","))) : deckName(S.deck))}</span>
       <div class="trail" aria-label="Últimos resultados, mais recente à direita">${last10.map(x => `<span class="${x.res}">${letter(x.res)}</span>`).join("")}</div>
     </div>${alert}`;
 }
 
 function renderCard() {
+  if (S.mode === "war") return;
   const all = S.all.filter(x => deckKey(x) === S.deck);
   let cur = 0; const first = all[0]?.res;
   while (cur < all.length && all[cur].res === first) cur++;
@@ -684,19 +884,31 @@ function renderCard() {
 }
 
 function renderFeed(b) {
+  if (S.mode === "war") b = warFeed();
   if (!b.length) { $("feed").innerHTML = `<div class="empty">Nenhuma batalha neste filtro.</div>`; $("moreBtn").hidden = true; $("feedNote").textContent = ""; $("lessBtn").hidden = true; return; }
   $("feedNote").textContent = b.length + " batalhas";
   $("feed").innerHTML = b.slice(0, S.feedN).map(x => {
     const a = archOf(x.opp);
     const cards = x.opp.map((c, i) => cardImg(c, x.oppV ? x.oppV[i] : "")).join("");
+    const wt = x.mode === "war" ? {pvp: "Batalha", duel: "Duelo", boat: "Barco"}[x.wtype] : "";
+    const wd = x.mode === "war" ? warDay(x.ts) : null;
+    if (x.rounds && x.rounds.length) return `<div class="bl ${x.res}">
+      <div class="bl-head">
+        <span class="bl-res">${resWord(x.res)}</span>
+        <span class="bl-arch">Duelo</span>
+        <span class="bl-cr">${x.cr[0]}${CROWN("b")}<span style="opacity:.8">–</span>${CROWN("r")}${x.cr[1]}</span>
+      </div>
+      <div class="rounds">${x.rounds.map((r, i) => `<div class="rnd"><span class="rr ${r.res}">R${i + 1}</span><div><div class="bl-foot" style="padding:0 0 3px"><span>${esc(archOf(r.opp).name)} · ${r.cr[0]}–${r.cr[1]}</span><span>seu deck: ${esc(warDeckName(r.me))}</span></div><div class="bl-cards">${r.opp.map((c, j) => cardImg(c, r.oppV ? r.oppV[j] : "")).join("")}</div></div></div>`).join("")}</div>
+      <div class="bl-foot"><span>${ago(x.ts)}</span><span>Dia ${wd.n || "–"} da guerra</span></div>
+    </div>`;
     return `<div class="bl ${x.res}">
       <div class="bl-head">
         <span class="bl-res">${resWord(x.res)}</span>
-        <span class="bl-arch">${esc(a.name)}</span>
+        <span class="bl-arch">${wt === "Barco" ? "Ataque de barco" : esc(a.name)}</span>
         <span class="bl-cr">${x.cr[0]}${CROWN("b")}<span style="opacity:.8">–</span>${CROWN("r")}${x.cr[1]}</span>
       </div>
       <div class="bl-cards">${cards}</div>
-      <div class="bl-foot"><span>${ago(x.ts)}</span><span></span></div>
+      <div class="bl-foot"><span>${ago(x.ts)}</span><span>${wd ? (wt === "Batalha" ? "" : wt + " · ") + "Dia " + (wd.n || "–") + " da guerra" : ""}</span></div>
     </div>`;
  }).join("");
   $("moreBtn").hidden = b.length <= S.feedN;
@@ -749,7 +961,7 @@ function renderElixir(b) {
 // ---------- 3. sessões e tilt ----------
 const SESSION_GAP = 30 * 60;
 function renderSessao() {
-  const all = S.all.filter(x => deckKey(x) === S.deck).slice().sort((p, q) => p.ts - q.ts);
+  const all = base().slice().sort((p, q) => p.ts - q.ts);
   if (all.length < 3) { $("pSessao").innerHTML = `<h3>Sessões e tilt</h3><p class="hint">Jogue mais algumas partidas com este deck para aparecer.</p>`; return; }
   // próxima partida depois de 2 derrotas seguidas, e depois de uma vitória
   const after2L = [], afterW = [];
@@ -871,6 +1083,24 @@ function renderMatchups(b) {
 }
 
 function renderDeep() {
+  if (S.mode === "war") {
+    const g = warGames(S.warAll), r = rec(g), ds = warDecks(g);
+    const best = ds.filter(d => d.list.length >= 3).sort((p, q) => rec(q.list).pct - rec(p.list).pct)[0];
+    $("deepBody").innerHTML = `
+      <div class="facts">
+        <div class="fact"><b>${r.w}–${r.l}</b><small>partidas de guerra registradas</small></div>
+        <div class="fact"><b>${S.war ? S.war.history.length : 0}</b><small>guerras no histórico do clã</small></div>
+        <div class="fact"><b>${best ? esc(warDeckName(best.me)) : "–"}</b><small>deck de guerra mais forte (mín. 3 partidas)</small></div>
+      </div>
+      <h3 style="font-size:19px">Regras de guerra</h3>
+      <ol>
+        <li><strong>Feche os 4 decks todo dia.</strong> 16 por guerra é o que separa quem carrega o clã.</li>
+        <li><strong>Duelo primeiro</strong>, quando o deck do dia estiver encaixado: vale mais fama que batalha avulsa.</li>
+        <li><strong>Não repita o erro do dia anterior:</strong> olhe o placar por deck aqui antes de atacar.</li>
+        <li><strong>Mesma cabeça da Liga:</strong> 2 derrotas seguidas, respira antes do próximo ataque.</li>
+      </ol>`;
+    return;
+  }
   const sy = S.all.filter(x => x.deck === "splashyard");
   const losses = sy.filter(x => x.res === "L"), wins = sy.filter(x => x.res === "W");
   const untouched = losses.filter(x => x.hp && x.hp[1] >= 13000).length;
@@ -894,14 +1124,16 @@ function renderDeep() {
 }
 
 function render() {
-  renderDeckTabs(); renderDeckBox();
+  renderDeckTabs(); renderPillMode(); renderDeckBox();
   const b = filtered();
-  renderScore(b); renderCard(); renderFeed(b); renderMatchups(b); renderElixir(b); renderSessao(); renderDeep();
+  renderScore(b); renderCard(); renderWarBox(); renderFeed(b); renderMatchups(b); renderWarHist(); renderElixir(b); renderSessao(); renderDeep();
+  const PL = S.mode === "war" ? {day: "Hoje", week: "Guerra", all: "Todas"} : {day: "Hoje", week: "7d", all: "Tudo"};
+  document.querySelectorAll("[data-per]").forEach(el => { el.textContent = PL[el.dataset.per]; });
   document.querySelectorAll("[data-per]").forEach(el => el.setAttribute("aria-pressed", el.dataset.per === S.per));
   const newest = S.all[0];
   if (S.loaded) $("liveTxt").textContent = newest ? "Ao vivo · " + ago(newest.ts) : "Ao vivo";
 }
-function saveFilters() { try { localStorage.setItem("liga4-filtros", JSON.stringify({deck: S.deck, per: S.per})); } catch (e) {} }
+function saveFilters() { try { localStorage.setItem("liga4-filtros", JSON.stringify({deck: S.deck, per: S.per, mode: S.mode})); } catch (e) {} }
 document.querySelectorAll("[data-per]").forEach(el => el.addEventListener("click", () => { S.per = el.dataset.per; S.feedN = 3; saveFilters(); render(); }));
 $("moreBtn").addEventListener("click", () => { S.feedN += 3; render(); });
 $("lessBtn").addEventListener("click", () => { S.feedN = 3; render(); window.scrollTo(0, 0); });
@@ -926,6 +1158,7 @@ $("deckbox").addEventListener("toggle", () => { try { localStorage.setItem("liga
 // seção Deck acompanha a aba: Splashyard fixo; outros decks pelas cartas da última partida com ele
 const DECK_SY = { grid: $("deckGrid").innerHTML, sub: $("deckSub").innerHTML };
 function renderDeckBox() {
+  if (S.mode === "war") { $("deckbox").hidden = true; return; }
   if (S.deck === "splashyard") {
     if ($("deckGrid").dataset.k !== "splashyard") { $("deckGrid").innerHTML = DECK_SY.grid; $("deckSub").innerHTML = DECK_SY.sub; $("deckFoot").hidden = false; $("deckGrid").dataset.k = "splashyard"; }
     $("deckbox").hidden = false; return;
@@ -959,6 +1192,8 @@ async function load() {
     if (!r.ok) throw new Error(r.status);
     const j = await r.json();
     S.all = (j.battles || []).filter(x => x && x.mode === "ranked").sort((p, q) => q.ts - p.ts);
+    S.warAll = (j.battles || []).filter(x => x && x.mode === "war").sort((p, q) => q.ts - p.ts);
+    try { const w = await fetch("war.json?t=" + Date.now(), {cache: "no-store"}); if (w.ok) S.war = await w.json(); } catch (e) {}
     S.loaded = true; $("live").classList.add("on"); render();
   } catch (e) {
     $("live").classList.remove("on"); $("liveTxt").textContent = S.loaded ? "Sem conexão" : "Não consegui carregar";
