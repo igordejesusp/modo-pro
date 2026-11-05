@@ -378,6 +378,20 @@ details.wdrop .chev { width: 22px; height: 22px; flex: none; }
 details.wdrop[open] .chev { transform: rotate(180deg); }
 details.wdrop .wdays { padding: 0 10px 12px; }
 
+/* decks de guerra como botões dentro do painel */
+.wdecks { display: flex; flex-direction: column; gap: 6px; }
+button.wdeck { border: 0; cursor: pointer; text-align: left; color: inherit; font: inherit; width: 100%; }
+button.wdeck[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--gold), 0 0 14px rgba(255, 201, 60, .35); }
+.wall { align-self: flex-start; border: 0; cursor: pointer; border-radius: 999px; padding: 6px 12px; background: var(--inset); box-shadow: inset 0 0 0 2px #4d2f93; font: 800 12.5px var(--body); color: var(--muted); }
+.wall[aria-pressed="true"] { background: linear-gradient(180deg, #ffe07a, var(--gold) 55%, var(--gold-dk)); color: var(--ink); box-shadow: 0 0 0 2px var(--ink); }
+.vslist { display: flex; flex-direction: column; gap: 6px; }
+.vs { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 8px; align-items: center; background: var(--inset); border-radius: 10px; padding: 6px 8px; }
+.vs .rr { font: 400 14px var(--display); text-align: center; border-radius: 8px; padding: 4px 0; }
+.vs .rr.W { background: var(--win-dk); } .vs .rr.L { background: var(--loss-dk); } .vs .rr.D { background: #6f7290; }
+.vs .lane > span { font: 800 12px var(--body); display: block; margin-bottom: 3px; }
+.vs .row8 { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 3px; }
+.vs .row8 img, .vs .row8 .nf { width: 100%; display: block; aspect-ratio: 102 / 150; object-fit: contain; }
+
 /* análise */
 details.deep { background: var(--inset-2); border-radius: 16px; box-shadow: 0 0 0 3px #26124f, inset 0 0 0 2px #4d2f93; }
 details.deep > summary { cursor: pointer; padding: 12px 14px; font: 400 21px var(--display); color: var(--gold); text-shadow: 1.58px 0.00px 0.4px var(--ink), 1.46px 0.61px 0.4px var(--ink), 1.12px 1.12px 0.4px var(--ink), 0.61px 1.46px 0.4px var(--ink), 0.00px 1.58px 0.4px var(--ink), -0.61px 1.46px 0.4px var(--ink), -1.12px 1.12px 0.4px var(--ink), -1.46px 0.61px 0.4px var(--ink), -1.58px 0.00px 0.4px var(--ink), -1.46px -0.61px 0.4px var(--ink), -1.12px -1.12px 0.4px var(--ink), -0.61px -1.46px 0.4px var(--ink), -0.00px -1.58px 0.4px var(--ink), 0.61px -1.46px 0.4px var(--ink), 1.12px -1.12px 0.4px var(--ink), 1.46px -0.61px 0.4px var(--ink); }
@@ -589,21 +603,26 @@ const cardName = k => PT[k] || k.replace(/-/g, " ").replace(/\b\w/g, c => c.toUp
 // Ordem importa: o primeiro que bater define o arquétipo.
 const ARCH = [
   {id:"cerco", name:"X-Bow / Morteiro", any:["x-bow","mortar"]},
-  {id:"aereo", name:"Aéreo (Lava / Balão)", any:["lava-hound","balloon"]},
+  {id:"lava", name:"Lava Hound", any:["lava-hound"]},
+  {id:"loon", name:"LumberLoon", all:["balloon","lumberjack"]},
+  {id:"balao", name:"Balão", any:["balloon"]},
   {id:"gcem", name:"Gigante Cemitério", all:["giant","graveyard"]},
   {id:"egiant", name:"Gigante Elétrico", any:["electro-giant"]},
   {id:"ggob", name:"Gigante Goblin", any:["goblin-giant"]},
-  {id:"golem", name:"Golem", any:["golem","elixir-golem"]},
+  {id:"egolem", name:"E-Golem", any:["elixir-golem"]},
+  {id:"golem", name:"Golem", any:["golem"]},
   {id:"rg", name:"Gigante Real", any:["royal-giant"]},
   {id:"tanque", name:"Goblinstein / Rúnico", any:["goblinstein","rune-giant"]},
   {id:"servo", name:"Servo Gigante", any:["minion-giant"]},
   {id:"corredor", name:"Corredor", any:["hog-rider"]},
   {id:"mk", name:"Megacavaleiro", any:["mega-knight"]},
   {id:"porcos", name:"Porcos / Recrutas", any:["royal-hogs","royal-recruits"]},
-  {id:"ponte", name:"Ponte rápida (Aríete / PEKKA)", any:["battle-ram","ram-rider","pekka","bandit"]},
+  {id:"broca", name:"Broca Goblin", any:["goblin-drill"]},
+  {id:"ponte", name:"Bridge Spam", any:["battle-ram","ram-rider","pekka","bandit"]},
   {id:"bait", name:"Log Bait", any:["goblin-barrel"]},
+  {id:"ponte", name:"Bridge Spam", any:["wall-breakers"]},
   {id:"cemiterio", name:"Cemitério", any:["graveyard"]},
-  {id:"subterraneo", name:"Broca / Mineiro", any:["goblin-drill","miner","mighty-miner"]},
+  {id:"mineiro", name:"Mineiro", any:["miner"]},
   {id:"sparky", name:"Sparky", any:["sparky"]},
   {id:"outros", name:"Outros", any:[]}
 ];
@@ -637,10 +656,12 @@ const PLANS = {
   servo: {b:["Mago de Gelo e Bebê Dragão seguram o Servo Gigante; Tornado puxa ele para o Rei.","Guarde o Veneno para o apoio que vem atrás."], gy:"Lane oposta quando ele investir no Servo Gigante."},
   outros: {b:["Leia a condição de vitória dele no primeiro minuto e guarde a resposta."], gy:"Depois de uma defesa com vantagem."}
 };
-
+PLANS.lava = PLANS.loon = PLANS.balao = PLANS.aereo;
+PLANS.egolem = PLANS.golem;
+PLANS.broca = PLANS.mineiro = PLANS.subterraneo;
 
 // carta que representa cada arquétipo
-const ICON = {cerco:"x-bow", aereo:"lava-hound", gcem:"giant", egiant:"electro-giant", ggob:"goblin-giant", golem:"golem", rg:"royal-giant", tanque:"goblinstein", servo:"minion-giant", corredor:"hog-rider", mk:"mega-knight", porcos:"royal-hogs", ponte:"battle-ram", bait:"goblin-barrel", cemiterio:"graveyard", subterraneo:"miner", sparky:"sparky", outros:"mirror"};
+const ICON = {cerco:"x-bow", lava:"lava-hound", loon:"balloon", balao:"balloon", egolem:"elixir-golem", broca:"goblin-drill", mineiro:"miner", aereo:"lava-hound", gcem:"giant", egiant:"electro-giant", ggob:"goblin-giant", golem:"golem", rg:"royal-giant", tanque:"goblinstein", servo:"minion-giant", corredor:"hog-rider", mk:"mega-knight", porcos:"royal-hogs", ponte:"battle-ram", bait:"goblin-barrel", cemiterio:"graveyard", subterraneo:"miner", sparky:"sparky", outros:"mirror"};
 // coroa no mesmo desenho da barra do topo (símbolos crown-b e crown-r)
 const CROWN = c => `<svg viewBox="0 0 100 84" aria-hidden="true"><use href="#crown-${c}"/></svg>`;
 const S = { wdOpen: false, all: [], warAll: [], war: null, mode: "liga", wdeck: "all", deck: "splashyard", per: "all", feedN: 3, loaded: false };
@@ -672,7 +693,7 @@ function filtered() {
 function warFeed() {
   const nw = nowWar();
   let b = S.warAll;
-  if (S.wdeck !== "all") b = b.filter(x => (x.rounds && x.rounds.length ? x.rounds : [x]).some(r => sig(r.me) === S.wdeck));
+  if (S.wdeck !== "all") b = b.filter(x => (x.rounds && x.rounds.length ? x.rounds : [x]).some(r => warDeckName(r.me) === S.wdeck));
   if (S.per === "day") b = b.filter(x => warDay(x.ts).day === nw.day);
   if (S.per === "week") b = b.filter(x => warDay(x.ts).war === nw.war);
   return b;
@@ -690,7 +711,7 @@ function deckKey(x) {
 }
 function deckName(k) {
   if (k === "splashyard") return "Splashyard";
-  if (k === "egolem") return "Golem de Elixir";
+  if (k === "egolem") return "E-Golem";
   if (k === "servo") return "Servo Gigante";
   if (k.startsWith("a-")) { const a = ARCH.find(z => z.id === k.slice(2)); return a && a.id !== "outros" ? a.name : "Outro deck"; }
   return "Outro deck";
@@ -702,8 +723,7 @@ function renderDeckTabs() {
   if (S.mode === "war") {
     const ds = warDecks(warGames(S.warAll)).slice(0, 6);
     if (S.wdeck !== "all" && !ds.some(d => d.k === S.wdeck)) S.wdeck = "all";
-    $("deckChips").innerHTML = ds.length ? [`<button type="button" data-wdeck="all" aria-pressed="${S.wdeck === "all"}">Todos os decks</button>`]
-      .concat(ds.map(d => `<button type="button" data-wdeck="${esc(d.k)}" aria-pressed="${S.wdeck === d.k}">${cardImg(d.me[0], "")}${esc(warDeckName(d.me))}</button>`)).join("") : "";
+    $("deckChips").innerHTML = "";
     return;
   }
   renderLigaChips();
@@ -766,12 +786,12 @@ function warDeckName(me) {
 }
 function warDecks(games) {
   const by = {};
-  games.forEach(g => { const k = sig(g.me); if (!k) return; (by[k] ||= {k, me: g.me, list: [], last: 0}).list.push(g); by[k].last = Math.max(by[k].last, g.ts); });
+  games.forEach(g => { if (!g.me || !g.me.length) return; const k = warDeckName(g.me); const d = (by[k] ||= {k, me: g.me, list: [], last: 0}); d.list.push(g); if (g.ts > d.last) { d.last = g.ts; d.me = g.me; } });
   return Object.values(by).sort((p, q) => q.list.length - p.list.length || q.last - p.last);
 }
 // lista base do modo: Liga = partidas do deck escolhido; Guerra = partidas (rodadas) do deck escolhido
 function base() {
-  if (S.mode === "war") { const g = warGames(S.warAll); return S.wdeck === "all" ? g : g.filter(x => sig(x.me) === S.wdeck); }
+  if (S.mode === "war") { const g = warGames(S.warAll); return S.wdeck === "all" ? g : g.filter(x => warDeckName(x.me) === S.wdeck); }
   return S.all.filter(x => deckKey(x) === S.deck);
 }
 const hasWar = () => !!(S.war || S.warAll.length);
@@ -795,20 +815,33 @@ function renderWarBox() {
   box.hidden = false; $("profile").hidden = true; $("deckbox").hidden = true;
   const W = S.war, nw = nowWar();
   const all = warGames(S.warAll);
-  const cur = all.filter(g => warDay(g.ts).war === nw.war);
+  // partidas do período escolhido (Hoje / Semana / Tudo), antes do filtro de deck
+  const inPer = g => S.per === "day" ? warDay(g.ts).day === nw.day : S.per === "week" ? warDay(g.ts).war === nw.war : true;
+  const perGames = all.filter(inPer);
+  const sel = filtered();                      // período + deck escolhido
   const pt = W ? W.period.type : null;
   const sub = !W ? "Sem dados da guerra ainda." :
     pt === "training" ? `Dias de treino · a próxima guerra começa na <b>quinta</b>` :
     `<b>${pt === "colosseum" ? "Coliseu" : "Guerra"} · dia ${nw.n} de 4</b> · semana ${W.period.week + 1}`;
   const me = W ? W.me : {};
   const today = pt && pt !== "training" ? (me.decksUsedToday || 0) : 0;
-  const r = rec(cur);
-  // dias da guerra atual
-  const days = [1, 2, 3, 4].map(n => { const l = cur.filter(g => warDay(g.ts).n === n); return {n, r: rec(l), used: l.length}; });
+  const r = rec(sel);
+  const PER = {day: "Hoje", week: "Guerra desta semana", all: "Todas as guerras"}[S.per];
+  // dias da guerra desta semana, já com o deck escolhido
+  const wk = all.filter(g => warDay(g.ts).war === nw.war && (S.wdeck === "all" || warDeckName(g.me) === S.wdeck));
+  const days = [1, 2, 3, 4].map(n => { const l = wk.filter(g => warDay(g.ts).n === n); return {n, r: rec(l), used: l.length}; });
   const DN = {1: "Qui", 2: "Sex", 3: "Sáb", 4: "Dom"};
   const race = W ? W.race : [];
   const maxF = Math.max(1, ...race.map(c => c.fame));
-  const decks = warDecks(cur.length ? cur : all).slice(0, 4);
+  // botões de deck: os decks usados no período (ou os últimos usados, se o período estiver vazio)
+  let decks = warDecks(perGames);
+  if (!decks.length) decks = warDecks(all).sort((p, q) => q.last - p.last).slice(0, 4).map(d => ({...d, list: []}));
+  decks = decks.slice(0, 6);
+  if (S.wdeck !== "all" && !decks.some(d => d.k === S.wdeck)) { const d = warDecks(all).find(x => x.k === S.wdeck); if (d) decks.push({...d, list: []}); }
+  const pct = x => x.n ? Math.round(x.pct * 100) + "%" : "–";
+  const deckBtn = d => { const dr = rec(d.list); return `<button type="button" class="wdeck" data-wdeck="${esc(d.k)}" aria-pressed="${S.wdeck === d.k}"><div class="wdeck-h"><b>${esc(warDeckName(d.me))}</b><span><span style="color:#7fbcff">${dr.w}</span>–<span style="color:#ff8197">${dr.l}</span> · ${pct(dr)}</span></div><div class="row8">${d.me.map(c => cardImg(c, "")).join("")}</div></button>`; };
+  // contra quem: as partidas do deck escolhido no período
+  const vs = S.wdeck === "all" ? [] : sel.slice(0, 12);
   box.innerHTML = `
     <div class="pbar static"><span class="t">Guerra</span><span class="live on"><i></i><span>${esc(W ? W.clan.name : "Clã")}</span></span></div>
     <div class="wsub">${sub}</div>
@@ -817,20 +850,30 @@ function renderWarBox() {
       <div class="mi"><span class="k">Sua fama</span><span class="v" style="color:var(--gold)">${(me.fame || 0).toLocaleString("pt-BR")}</span></div>
       <div class="mi"><span class="k">No clã</span><span class="v">${me.fame && W.myRank ? W.myRank + "º" : "–"}</span></div>
     </div>
-    <details class="wdrop" id="wdrop"${S.wdOpen ? " open" : ""}><summary><span class="wd-t">Dias da guerra</span><span class="wd-s">${pt && pt !== "training" ? `hoje: <span style="color:#7fbcff">${(days[nw.n - 1] || {r: {w: 0}}).r.w}</span>–<span style="color:#ff8197">${(days[nw.n - 1] || {r: {l: 0}}).r.l}</span>` : "quinta a domingo"}</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9 L12 16 L19 9" fill="none" stroke="#24104d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9 L12 16 L19 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
-    <div class="wdays">${days.map(d => `<div class="wd${pt !== "training" && d.n === nw.n ? " today" : ""}"><span class="k">${DN[d.n]}</span><span class="v"><span style="color:#7fbcff">${d.r.w}</span>–<span style="color:#ff8197">${d.r.l}</span></span>${slots(d.used)}</div>`).join("")}</div></details>
+    <div class="wpanel"><h3>Seus decks de guerra</h3>
+      ${all.length ? `<div class="wdecks">
+        <button type="button" class="wall" data-wdeck="all" aria-pressed="${S.wdeck === "all"}">Todos os decks · <span style="color:#7fbcff">${rec(perGames).w}</span>–<span style="color:#ff8197">${rec(perGames).l}</span></button>
+        ${decks.map(deckBtn).join("")}</div>
+        <p class="hint">Toque num deck para ver só ele no app inteiro. Placar de: ${PER.toLowerCase()}.</p>`
+        : `<p class="hint">Os decks aparecem aqui depois das primeiras batalhas de guerra.</p>`}
+    </div>
     <div class="stats"><div class="boxes">
       <div class="box"><span class="lbl">Vitórias</span><span class="val" style="color:#7fbcff">${r.w}</span></div>
       <div class="box"><span class="lbl">Derrotas</span><span class="val" style="color:#ff8197">${r.l}</span></div>
-      <div class="box"><span class="lbl">Aproveit.</span><span class="val">${r.n ? Math.round(r.pct * 100) + "%" : "–"}</span></div>
-    </div><span class="ctx" style="font:800 12px var(--body);color:var(--muted)">Esta guerra · cada rodada de duelo conta como uma partida</span></div>
-    ${race.some(c => c.fame > 0) ? `<div class="wpanel"><h3>Corrida do clã</h3><div class="race">${race.map((c, i) => `<div class="rc${c.mine ? " mine" : ""}"><span class="pos">${i + 1}º</span><div class="lane"><span>${esc(c.name)}</span><div class="track"><b style="width:${(c.fame / maxF * 100).toFixed(1)}%"></b></div></div><span class="fm">${c.fame.toLocaleString("pt-BR")}</span></div>`).join("")}</div></div>` : ""}
-    ${race.length && !race.some(c => c.fame > 0) ? `<div class="wpanel"><h3>Corrida do clã</h3><p class="hint">A corrida zera no treino e volta na quinta, no 1º dia de guerra.</p></div>` : ""}
-    <div class="wpanel" style="padding-bottom:14px"><h3>Seus decks de guerra</h3>
-      ${decks.length ? decks.map(d => { const dr = rec(d.list); return `<div class="wdeck"><div class="wdeck-h"><b>${esc(warDeckName(d.me))}</b><span><span style="color:#7fbcff">${dr.w}</span>–<span style="color:#ff8197">${dr.l}</span> · ${dr.n ? Math.round(dr.pct * 100) + "%" : "–"}</span></div><div class="row8">${d.me.map(c => cardImg(c, "")).join("")}</div></div>`; }).join("")
-        : `<p class="hint">Os decks aparecem aqui depois das primeiras batalhas de guerra (a coleta começou em 28/10).</p>`}
-    </div>`;
+      <div class="box"><span class="lbl">Aproveit.</span><span class="val">${pct(r)}</span></div>
+    </div><span class="ctx" style="font:800 12px var(--body);color:var(--muted)">${PER} · ${S.wdeck === "all" ? "todos os decks" : esc(S.wdeck)} · cada rodada de duelo conta como uma partida</span></div>
+    ${vs.length ? `<div class="wpanel"><h3>Contra quem você jogou</h3><div class="vslist">${vs.map(g => `<div class="vs"><span class="rr ${g.res}">${letter(g.res)}</span><div class="lane"><span>${esc(archOf(g.opp).name)} · ${g.cr[0]}–${g.cr[1]} · ${ago(g.ts)}</span><div class="row8">${g.opp.map((c, j) => cardImg(c, g.oppV ? g.oppV[j] : "")).join("")}</div></div></div>`).join("")}</div></div>`
+      : S.wdeck !== "all" ? `<div class="wpanel"><p class="hint">Nenhuma partida com este deck no período escolhido.</p></div>` : ""}
+    <details class="wdrop" id="wdrop"${S.wdOpen ? " open" : ""}><summary><span class="wd-t">Dias da guerra</span><span class="wd-s">${pt && pt !== "training" ? `hoje: <span style="color:#7fbcff">${(days[nw.n - 1] || {r: {w: 0}}).r.w}</span>–<span style="color:#ff8197">${(days[nw.n - 1] || {r: {l: 0}}).r.l}</span>` : "quinta a domingo"}</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9 L12 16 L19 9" fill="none" stroke="#24104d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9 L12 16 L19 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+    <div class="wdays">${days.map(d => `<div class="wd${pt !== "training" && d.n === nw.n ? " today" : ""}"><span class="k">${DN[d.n]}</span><span class="v"><span style="color:#7fbcff">${d.r.w}</span>–<span style="color:#ff8197">${d.r.l}</span></span>${slots(d.used)}</div>`).join("")}</div></details>
+    ${race.some(c => c.fame > 0) ? `<div class="wpanel" style="padding-bottom:14px"><h3>Corrida do clã</h3><div class="race">${race.map((c, i) => `<div class="rc${c.mine ? " mine" : ""}"><span class="pos">${i + 1}º</span><div class="lane"><span>${esc(c.name)}</span><div class="track"><b style="width:${(c.fame / maxF * 100).toFixed(1)}%"></b></div></div><span class="fm">${c.fame.toLocaleString("pt-BR")}</span></div>`).join("")}</div></div>`
+      : `<div class="wpanel" style="padding-bottom:14px"><h3>Corrida do clã</h3><p class="hint">A corrida zera no treino e volta na quinta, no 1º dia de guerra.</p></div>`}`;
 }
+$("warBox").addEventListener("click", e => {
+  const b = e.target.closest("[data-wdeck]"); if (!b) return;
+  S.wdeck = S.wdeck === b.dataset.wdeck && b.dataset.wdeck !== "all" ? "all" : b.dataset.wdeck;
+  S.feedN = 3; saveFilters(); render();
+});
 
 $("warBox").addEventListener("toggle", e => { if (e.target.id === "wdrop") { S.wdOpen = e.target.open; try { localStorage.setItem("liga4-wdias", S.wdOpen ? "1" : "0"); } catch (x) {} } }, true);
 try { S.wdOpen = localStorage.getItem("liga4-wdias") === "1"; } catch (e) {}
@@ -871,7 +914,7 @@ function renderScore(b) {
       <div class="box"><span class="lbl">Aproveit.</span><span class="val">${r.n ? Math.round(r.pct * 100) + "%" : "–"}</span></div>
     </div>
     <div class="trailrow">
-      <span class="ctx">${per} · ${esc(S.mode === "war" ? (S.wdeck === "all" ? "todos os decks" : warDeckName(S.wdeck.split(","))) : deckName(S.deck))}</span>
+      <span class="ctx">${per} · ${esc(S.mode === "war" ? (S.wdeck === "all" ? "todos os decks" : S.wdeck) : deckName(S.deck))}</span>
       <div class="trail" aria-label="Últimos resultados, mais recente à direita">${last10.map(x => `<span class="${x.res}">${letter(x.res)}</span>`).join("")}</div>
     </div>${alert}`;
 }
